@@ -1,0 +1,84 @@
+[package]
+name = "leetcode"
+version = "0.0.1"
+edition = "2021"
+
+[[bin]]
+name = "1"
+path = "0001_two_sum.rs"
+
+[[bin]]
+name = "2"
+path = "0002_add_two_numbers.rs"
+
+[[bin]]
+name = "3"
+path = "0003_longest_substring_without_repeating_characters.rs"
+
+[[bin]]
+name = "4"
+path = "0004_median_of_two_sorted_arrays.rs"
+
+[[bin]]
+name = "5"
+path = "0005_longest_palindromic_substring.rs"
+
+[[bin]]
+name = "6"
+path = "0006_zigzag_conversion.rs"
+
+[[bin]]
+name = "7"
+path = "0007_reverse_integer.rs"
+
+[[bin]]
+name = "8"
+path = "0008_string_to_integer.rs"
+
+[[bin]]
+name = "9"
+path = "0009_palindrome_number.rs"
+
+[[bin]]
+name = "10"
+path = "0010_regular_expression_matching.rs"
+
+[[bin]]
+name = "11"
+path = "0011_container_with_most_water.rs"
+
+[[bin]]
+name = "12"
+path = "0012_integer_to_roman.rs"
+
+[[bin]]
+name = "13"
+path = "0013_roman_to_integer.rs"
+
+[[bin]]
+name = "14"
+path = "0014_longest_common_prefix.rs"
+
+[[bin]]
+name = "15"
+path = "0015_3sum.rs"
+
+[[bin]]
+name = "16"
+path = "0016_3sum_closest.rs"
+
+[[bin]]
+name = "17"
+path = "0017_letter_combinations_of_a_phone_number.rs"
+
+[[bin]]
+name = "18"
+path = "0018_4sum.rs"
+
+[[bin]]
+name = "19"
+path = "0019_remove_nth_node_from_end_of_list.rs"
+
+[[bin]]
+name = "20"
+path = "0020_valid_parentheses.rs"
