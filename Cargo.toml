@@ -82,3 +82,7 @@ path = "0019_remove_nth_node_from_end_of_list.rs"
 [[bin]]
 name = "20"
 path = "0020_valid_parentheses.rs"
+
+[[bin]]
+name = "21"
+path = "0021_merge_two_sorted_lists.rs"
