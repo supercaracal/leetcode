@@ -8,5 +8,36 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn is_valid(s: String) -> bool {
-    s.len() % 2 == 0
+    let mut stack = Vec::with_capacity(s.len());
+    for c in s.chars() {
+        match c {
+            '(' | '[' | '{' => stack.push(c),
+            ')' => match stack.pop() {
+                Some(e) => {
+                    if e != '(' {
+                        return false;
+                    }
+                }
+                None => return false,
+            },
+            ']' => match stack.pop() {
+                Some(e) => {
+                    if e != '[' {
+                        return false;
+                    }
+                }
+                None => return false,
+            },
+            '}' => match stack.pop() {
+                Some(e) => {
+                    if e != '{' {
+                        return false;
+                    }
+                }
+                None => return false,
+            },
+            _ => return false,
+        }
+    }
+    stack.len() == 0
 }
