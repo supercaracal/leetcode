@@ -75,6 +75,6 @@ fn merge_two_lists(
         }
         (Some(n1), None) => Some(n1),
         (None, Some(n2)) => Some(n2),
-        _ => return None,
+        _ => None,
     }
 }
