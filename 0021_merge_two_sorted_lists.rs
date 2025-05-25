@@ -63,7 +63,18 @@ fn merge_two_lists(
     list1: Option<Box<ListNode>>,
     list2: Option<Box<ListNode>>,
 ) -> Option<Box<ListNode>> {
-    // TODO: impl
-    println!("{list1:?} {list2:?}");
-    list1
+    match (list1, list2) {
+        (Some(mut n1), Some(mut n2)) => {
+            if n1.val <= n2.val {
+                n1.next = merge_two_lists(n1.next, Some(n2));
+                Some(n1)
+            } else {
+                n2.next = merge_two_lists(Some(n1), n2.next);
+                Some(n2)
+            }
+        }
+        (Some(n1), None) => Some(n1),
+        (None, Some(n2)) => Some(n2),
+        _ => return None,
+    }
 }
