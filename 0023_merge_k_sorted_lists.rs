@@ -51,8 +51,8 @@ fn build_linked_list(nums: Vec<i32>) -> Option<Box<ListNode>> {
 fn main() -> Result<(), &'static str> {
     let args: Vec<String> = std::env::args().collect();
     let mut lists = Vec::with_capacity(args.len() - 1);
-    for i in 1..args.len() {
-        let list = build_linked_list(parse_arg(&args[i]));
+    for i in args.iter().skip(1) {
+        let list = build_linked_list(parse_arg(i));
         lists.push(list)
     }
     println!("{:?}", merge_k_lists(lists).unwrap());
