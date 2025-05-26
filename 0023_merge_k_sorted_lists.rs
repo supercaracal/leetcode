@@ -60,7 +60,34 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
-    // TODO: impl
-    println!("{lists:?}");
-    Some(Box::new(ListNode::new(0)))
+    let mut lists = lists;
+    while lists.len() > 1 {
+        let list1 = lists.pop();
+        let list2 = lists.pop();
+        match (list1, list2) {
+            (Some(l1), Some(l2)) => lists.push(merge_two_lists(l1, l2)),
+            (Some(l), None) | (None, Some(l)) => lists.push(l),
+            _ => {}
+        }
+    }
+    lists.pop().map_or(None, |e| e)
+}
+
+fn merge_two_lists(
+    list1: Option<Box<ListNode>>,
+    list2: Option<Box<ListNode>>,
+) -> Option<Box<ListNode>> {
+    match (list1, list2) {
+        (Some(mut n1), Some(mut n2)) => {
+            if n1.val <= n2.val {
+                n1.next = merge_two_lists(n1.next, Some(n2));
+                Some(n1)
+            } else {
+                n2.next = merge_two_lists(Some(n1), n2.next);
+                Some(n2)
+            }
+        }
+        (Some(n), None) | (None, Some(n)) => Some(n),
+        _ => None,
+    }
 }
