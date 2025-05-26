@@ -60,6 +60,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
+    // OPTIMIZE: Use BinaryHeap
     let mut lists = lists;
     while lists.len() > 1 {
         let list1 = lists.pop();
