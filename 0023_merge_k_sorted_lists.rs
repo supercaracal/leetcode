@@ -70,7 +70,7 @@ fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
             _ => {}
         }
     }
-    lists.pop().map_or(None, |e| e)
+    lists.pop().and_then(|e| e)
 }
 
 fn merge_two_lists(
