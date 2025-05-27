@@ -98,3 +98,7 @@ path = "0023_merge_k_sorted_lists.rs"
 [[bin]]
 name = "24"
 path = "0024_swap_nodes_in_pairs.rs"
+
+[[bin]]
+name = "25"
+path = "0025_reverse_nodes_in_k_group.rs"
