@@ -59,6 +59,17 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn swap_pairs(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    // TODO: solve
-    head
+    if let Some(node) = head {
+        let mut node = node;
+        match node.next {
+            Some(mut next) => {
+                node.next = swap_pairs(next.next);
+                next.next = Some(node);
+                Some(next)
+            }
+            None => Some(node),
+        }
+    } else {
+        head
+    }
 }
