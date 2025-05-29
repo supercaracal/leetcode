@@ -106,3 +106,7 @@ path = "0025_reverse_nodes_in_k_group.rs"
 [[bin]]
 name = "26"
 path = "0026_remove_duplicates_from_sorted_array.rs"
+
+[[bin]]
+name = "27"
+path = "0027_remove_element.rs"
