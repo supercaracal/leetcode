@@ -22,8 +22,10 @@ fn remove_duplicates(nums: Vec<i32>) -> i32 {
             nums[j] = i32::MAX;
         } else {
             i += 1;
-            nums[i] = nums[j];
-            nums[j] = i32::MAX;
+            if i != j {
+                nums[i] = nums[j];
+                nums[j] = i32::MAX;
+            }
         }
     }
     println!("{nums:?}");
