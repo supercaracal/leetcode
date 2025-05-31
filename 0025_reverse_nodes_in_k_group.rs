@@ -60,7 +60,50 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn reverse_k_group(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-    // TODO: solve
-    println!("{k:?}");
-    head
+    let mut head = head;
+    let k = k as usize;
+    let mut stacks = Vec::new();
+    while head.is_some() {
+        let mut i = 0;
+        let mut stack = Vec::with_capacity(k);
+        while i < k {
+            if let Some(mut h) = head {
+                let next = h.next.take();
+                stack.push(Some(h));
+                head = next;
+            }
+            i += 1;
+        }
+        stacks.push(stack);
+    }
+    let mut root: Option<Box<ListNode>> = None;
+    let mut prev: Option<&mut Box<ListNode>> = None;
+    for mut stack in stacks {
+        if stack.len() == k {
+            while let Some(e) = stack.pop() {
+                if let Some(node) = e {
+                    if let Some(p) = prev {
+                        p.next = Some(node);
+                        prev = p.next.as_mut();
+                    } else {
+                        root = Some(node);
+                        prev = root.as_mut();
+                    }
+                }
+            }
+        } else {
+            for node in stack {
+                if let Some(node) = node {
+                    if let Some(p) = prev {
+                        p.next = Some(node);
+                        prev = p.next.as_mut();
+                    } else {
+                        root = Some(node);
+                        prev = root.as_mut();
+                    }
+                }
+            }
+        }
+    }
+    root
 }
