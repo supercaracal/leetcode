@@ -8,6 +8,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn str_str(haystack: String, needle: String) -> i32 {
+    // TODO: solve
     println!("{haystack:?}, {needle:?}");
     0
 }
