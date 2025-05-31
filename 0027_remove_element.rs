@@ -13,7 +13,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
-    if nums.len() == 0 {
+    if nums.is_empty() {
         return 0;
     }
     let mut i = 0;
