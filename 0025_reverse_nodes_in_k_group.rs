@@ -92,15 +92,13 @@ fn reverse_k_group(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>>
                 }
             }
         } else {
-            for node in stack {
-                if let Some(node) = node {
-                    if let Some(p) = prev {
-                        p.next = Some(node);
-                        prev = p.next.as_mut();
-                    } else {
-                        root = Some(node);
-                        prev = root.as_mut();
-                    }
+            for node in stack.into_iter() {
+                if let Some(p) = prev {
+                    p.next = node;
+                    prev = p.next.as_mut();
+                } else {
+                    root = node;
+                    prev = root.as_mut();
                 }
             }
         }
