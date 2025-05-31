@@ -13,6 +13,9 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
+    if nums.len() == 0 {
+        return 0;
+    }
     let mut i = 0;
     let mut j = nums.len() - 1;
     while i < j {
@@ -28,7 +31,7 @@ fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
         }
     }
     println!("{nums:?}");
-    if i == 0 {
+    if i == 0 && nums.len() > 1 {
         return 0;
     }
     (i + 1) as i32
