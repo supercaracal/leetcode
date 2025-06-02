@@ -10,30 +10,32 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn divide(dividend: i32, divisor: i32) -> i32 {
-    if divisor == 1 {
-        return dividend;
-    }
-    if divisor == -1 {
-        if dividend == i32::MIN {
-            return i32::MAX;
-        } else {
-            return -dividend;
+    let s = (dividend < 0) == (divisor < 0);
+    let dividend: i64 = if dividend > 0 {
+        dividend as i64
+    } else {
+        -(dividend as i64)
+    };
+    let divisor: i64 = if divisor > 0 {
+        divisor as i64
+    } else {
+        -(divisor as i64)
+    };
+    let mut q: i64 = 0;
+    let mut r: i64 = 0;
+    for i in (0..32).rev() {
+        r = r << 1;
+        r = r | ((dividend >> i) & 1);
+        if r >= divisor {
+            r -= divisor;
+            q |= 1 << i;
         }
     }
-    let mut q = 0;
-    let mut n = if dividend > 0 {
-        -dividend
+    if s {
+        let max: i64 = (1 << 31) - 1;
+        q.min(max) as i32
     } else {
-        dividend
-    };
-    let m = if divisor > 0 { -divisor } else { divisor };
-    while n <= m {
-        n -= m;
-        q += 1;
-    }
-    if (dividend < 0) == (divisor < 0) {
-        q
-    } else {
-        -q
+        let min: i64 = -(1 << 31);
+        -q.max(min) as i32
     }
 }
