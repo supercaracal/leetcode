@@ -118,3 +118,7 @@ path = "0028_find_the_index_of_the_first_occurrence_in_a_string.rs"
 [[bin]]
 name = "29"
 path = "0029_devide_two_integers.rs"
+
+[[bin]]
+name = "30"
+path = "0030_substring_with_concatenation_of_all_words.rs"
