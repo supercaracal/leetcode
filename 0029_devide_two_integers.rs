@@ -24,8 +24,8 @@ fn divide(dividend: i32, divisor: i32) -> i32 {
     let mut q: i64 = 0;
     let mut r: i64 = 0;
     for i in (0..32).rev() {
-        r = r << 1;
-        r = r | ((dividend >> i) & 1);
+        r <<= 1;
+        r |= (dividend >> i) & 1;
         if r >= divisor {
             r -= divisor;
             q |= 1 << i;
