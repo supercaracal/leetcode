@@ -17,23 +17,23 @@ fn divide(dividend: i32, divisor: i32) -> i32 {
         if dividend == i32::MIN {
             return i32::MAX;
         } else {
-            return dividend * -1;
+            return -dividend;
         }
     }
     let mut q = 0;
     let mut n = if dividend > 0 {
-        -1 * dividend
+        -dividend
     } else {
         dividend
     };
-    let m = if divisor > 0 { -1 * divisor } else { divisor };
+    let m = if divisor > 0 { -divisor } else { divisor };
     while n <= m {
         n -= m;
         q += 1;
     }
     if (dividend < 0) == (divisor < 0) {
-        1 * q
+        q
     } else {
-        -1 * q
+        -q
     }
 }
