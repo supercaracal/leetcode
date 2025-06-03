@@ -122,3 +122,7 @@ path = "0029_devide_two_integers.rs"
 [[bin]]
 name = "30"
 path = "0030_substring_with_concatenation_of_all_words.rs"
+
+[[bin]]
+name = "31"
+path = "0031_next_permutation.rs"
