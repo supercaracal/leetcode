@@ -26,7 +26,7 @@ fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
             if uniq.contains_key(substr) {
                 break;
             }
-            if let Some(_) = dict.get(substr) {
+            if dict.get(substr).is_some() {
                 uniq.insert(substr, ());
                 j += size;
             } else {
