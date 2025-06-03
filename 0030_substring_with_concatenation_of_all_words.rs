@@ -9,7 +9,33 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
-    // TODO: solve
-    println!("{s:?}, {words:?}");
-    vec![0]
+    if s.is_empty() || words.is_empty() {
+        return Vec::with_capacity(0);
+    }
+    let mut dict = std::collections::HashMap::new();
+    for word in words.iter() {
+        dict.insert(word.as_str(), ());
+    }
+    let size = words[0].len();
+    let mut indices = Vec::new();
+    for i in 0..s.len() {
+        let mut j = i;
+        let mut uniq = std::collections::HashMap::new();
+        while j + size <= s.len() && j + size <= i + size * words.len() {
+            let substr: &str = &s[j..j + size];
+            if uniq.contains_key(substr) {
+                break;
+            }
+            if let Some(_) = dict.get(substr) {
+                uniq.insert(substr, ());
+                j += size;
+            } else {
+                break;
+            }
+        }
+        if i + size * words.len() <= j {
+            indices.push(i as i32);
+        }
+    }
+    indices
 }
