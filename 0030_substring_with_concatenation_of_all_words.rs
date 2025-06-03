@@ -14,7 +14,12 @@ fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
     }
     let mut dict = std::collections::HashMap::new();
     for word in words.iter() {
-        dict.insert(word.as_str(), ());
+        let cnt = if let Some(v) = dict.get(word.as_str()) {
+            *v + 1
+        } else {
+            1
+        };
+        dict.insert(word.as_str(), cnt);
     }
     let size = words[0].len();
     let mut indices = Vec::new();
@@ -23,11 +28,16 @@ fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
         let mut uniq = std::collections::HashMap::new();
         while j + size <= s.len() && j + size <= i + size * words.len() {
             let substr: &str = &s[j..j + size];
-            if uniq.contains_key(substr) {
-                break;
-            }
-            if dict.contains_key(substr) {
-                uniq.insert(substr, ());
+            if let Some(max) = dict.get(substr) {
+                let cnt = if let Some(v) = uniq.get(substr) {
+                    if *v == *max {
+                        break;
+                    }
+                    *v + 1
+                } else {
+                    1
+                };
+                uniq.insert(substr, cnt);
                 j += size;
             } else {
                 break;
