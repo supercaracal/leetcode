@@ -9,6 +9,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn find_substring(s: String, words: Vec<String>) -> Vec<i32> {
+    // TODO: optimize, timed out
     if s.is_empty() || words.is_empty() {
         return Vec::with_capacity(0);
     }
