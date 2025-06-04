@@ -19,14 +19,23 @@ fn next_permutation(nums: &mut Vec<i32>) {
     }
     let mut i = nums.len() - 2;
     while nums[i + 1] <= nums[i] {
+        if i == 0 {
+            break;
+        }
         i -= 1;
     }
     let mut j = nums.len() - 1;
     while nums[j] <= nums[i] {
+        if j == 0 {
+            break;
+        }
         j -= 1;
     }
     nums.swap(i, j);
     i += 1;
+    if i > j {
+        i = 0;
+    }
     j = nums.len() - 1;
     while i < j {
         nums.swap(i, j);
