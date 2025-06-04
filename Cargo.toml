@@ -126,3 +126,7 @@ path = "0030_substring_with_concatenation_of_all_words.rs"
 [[bin]]
 name = "31"
 path = "0031_next_permutation.rs"
+
+[[bin]]
+name = "32"
+path = "0032_longest_valid_parentheses.rs"
