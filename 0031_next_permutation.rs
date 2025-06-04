@@ -12,6 +12,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
 fn next_permutation(nums: &mut Vec<i32>) {
     if nums.is_empty() || nums.len() == 1 {
         return;
