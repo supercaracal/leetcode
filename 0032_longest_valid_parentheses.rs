@@ -8,5 +8,29 @@ fn main() -> Result<(), &'static str> {
 }
 
 pub fn longest_valid_parentheses(s: String) -> i32 {
-    s.len() as i32
+    // FIXME: some errors
+    if s.is_empty() {
+        return 0;
+    }
+    let mut stack = Vec::with_capacity(s.len());
+    let mut max = 0;
+    for (r, c) in s.chars().enumerate() {
+        match c {
+            '(' => {
+                stack.push(r);
+            }
+            ')' => match stack.pop() {
+                Some(l) => {
+                    if stack.is_empty() {
+                        max += r - l + 1;
+                    } else {
+                        max = max.max(r - l + 1);
+                    }
+                }
+                None => {}
+            },
+            _ => {}
+        }
+    }
+    max as i32
 }
