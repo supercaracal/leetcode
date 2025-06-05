@@ -19,15 +19,12 @@ pub fn longest_valid_parentheses(s: String) -> i32 {
             '(' => {
                 stack.push(r);
             }
-            ')' => match stack.pop() {
-                Some(l) => {
-                    if stack.is_empty() {
-                        max += r - l + 1;
-                    } else {
-                        max = max.max(r - l + 1);
-                    }
+            ')' => if let Some(l) = stack.pop() {
+                if stack.is_empty() {
+                    max += r - l + 1;
+                } else {
+                    max = max.max(r - l + 1);
                 }
-                None => {}
             },
             _ => {}
         }
