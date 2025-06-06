@@ -134,3 +134,7 @@ path = "0032_longest_valid_parentheses.rs"
 [[bin]]
 name = "33"
 path = "0033_search_in_rotated_sorted_array.rs"
+
+[[bin]]
+name = "34"
+path = "0034_find_first_and_last_position_of_element_in_sorted_array.rs"
