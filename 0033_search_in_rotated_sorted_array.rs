@@ -27,12 +27,10 @@ fn search(nums: Vec<i32>, target: i32) -> i32 {
             } else {
                 r = mid - 1;
             }
+        } else if target < nums[mid] || target > nums[r] {
+            r = mid - 1;
         } else {
-            if target < nums[mid] || target > nums[r] {
-                r = mid - 1;
-            } else {
-                l = mid + 1;
-            }
+            l = mid + 1;
         }
     }
     -1
