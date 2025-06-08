@@ -13,7 +13,30 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
-    // TODO: solve
-    println!("{nums:?}, {target:?}");
-    0
+    let mut l = 0;
+    let mut r = nums.len() - 1;
+    use std::cmp::Ordering;
+    while l <= r {
+        let m = (l + r) / 2;
+        match target.cmp(&nums[m]) {
+            Ordering::Greater => {
+                if m == nums.len() - 1 {
+                    l = m + 1;
+                    break;
+                }
+                l = m + 1;
+            }
+            Ordering::Less => {
+                if m == 0 {
+                    break;
+                }
+                r = m - 1;
+            }
+            Ordering::Equal => {
+                l = m;
+                break;
+            }
+        }
+    }
+    l as i32
 }
