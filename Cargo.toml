@@ -142,3 +142,7 @@ path = "0034_find_first_and_last_position_of_element_in_sorted_array.rs"
 [[bin]]
 name = "35"
 path = "0035_search_insert_position.rs"
+
+[[bin]]
+name = "36"
+path = "0036_valid_sudoku.rs"
