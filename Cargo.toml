@@ -146,3 +146,7 @@ path = "0035_search_insert_position.rs"
 [[bin]]
 name = "36"
 path = "0036_valid_sudoku.rs"
+
+[[bin]]
+name = "37"
+path = "0037_sudoku_solver.rs"
