@@ -30,9 +30,7 @@ fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
             rows[r].insert(n);
             cols[c].insert(n);
             let blk_idx = (r / 3, c / 3);
-            if !blks.contains_key(&blk_idx) {
-                blks.insert(blk_idx, HashSet::new());
-            }
+            blks.entry(blk_idx).or_insert_with(HashSet::new);
             if let Some(set) = blks.get_mut(&blk_idx) {
                 if set.contains(&n) {
                     return false;
