@@ -12,6 +12,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::needless_range_loop)]
 fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
     use std::collections::HashMap;
     use std::collections::HashSet;
