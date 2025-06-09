@@ -13,47 +13,31 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
-    for i in 0..9 {
-        let mut row = [false; 10];
-        let mut col = [false; 10];
-        for j in 0..9 {
-            if board[i][j] == '.' {
+    use std::collections::HashMap;
+    use std::collections::HashSet;
+    let mut rows = vec![HashSet::new(); 9];
+    let mut cols = vec![HashSet::new(); 9];
+    let mut blks = HashMap::new();
+    for r in 0..9 {
+        for c in 0..9 {
+            if board[r][c] == '.' {
                 continue;
             }
-            let n = board[i][j].to_digit(10).unwrap() as usize;
-            if row[n] {
+            let n = board[r][c].to_digit(10).unwrap() as usize;
+            if rows[r].contains(&n) || cols[c].contains(&n) {
                 return false;
             }
-            row[n] = true;
-        }
-        for j in 0..9 {
-            if board[j][i] == '.' {
-                continue;
+            rows[r].insert(n);
+            cols[c].insert(n);
+            let blk_idx = (r / 3, c / 3);
+            if !blks.contains_key(&blk_idx) {
+                blks.insert(blk_idx, HashSet::new());
             }
-            let n = board[j][i].to_digit(10).unwrap() as usize;
-            if col[n] {
-                return false;
-            }
-            col[n] = true;
-        }
-    }
-    for i in 0..3 {
-        for j in 0..3 {
-            let mut blk = [false; 10];
-            for k in 0..3 {
-                for l in 0..3 {
-                    let x = i * 3 + k;
-                    let y = j * 3 + l;
-                    println!("{x:?},{y:?}");
-                    if board[y][x] == '.' {
-                        continue;
-                    }
-                    let n = board[y][x].to_digit(10).unwrap() as usize;
-                    if blk[n] {
-                        return false;
-                    }
-                    blk[n] = true;
+            if let Some(set) = blks.get_mut(&blk_idx) {
+                if set.contains(&n) {
+                    return false;
                 }
+                set.insert(n);
             }
         }
     }
