@@ -26,7 +26,7 @@ fn backtrack(board: &mut Vec<Vec<char>>) -> bool {
             if board[r][c] != '.' {
                 continue;
             }
-            for n in '0'..'9' {
+            for n in '1'..='9' {
                 if is_valid(board, r, c, n) {
                     board[r][c] = n;
                     if backtrack(board) {
@@ -41,7 +41,7 @@ fn backtrack(board: &mut Vec<Vec<char>>) -> bool {
     true
 }
 
-fn is_valid(board: &Vec<Vec<char>>, r: usize, c: usize, n: char) -> bool {
+fn is_valid(board: &[Vec<char>], r: usize, c: usize, n: char) -> bool {
     for i in 0..9 {
         if board[r][i] == n
             || board[i][c] == n
