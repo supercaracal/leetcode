@@ -17,6 +17,7 @@ fn main() -> Result<(), &'static str> {
 
 // https://www.youtube.com/watch?v=4psV4SedHg0
 fn solve_sudoku(board: &mut Vec<Vec<char>>) {
+    // OPTIMIZE: 157ms to 0ms
     backtrack(board);
 }
 
