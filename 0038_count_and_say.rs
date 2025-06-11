@@ -15,7 +15,7 @@ fn count_and_say(n: i32) -> String {
     if n == 1 {
         return "1".to_string();
     }
-    let mut encoded: Vec<(char, usize)> = Vec::new();
+    let mut encoded: Vec<(char, u32)> = Vec::new();
     for c in count_and_say(n - 1).chars() {
         if let Some(mut e) = encoded.pop() {
             if c == e.0 {
@@ -30,7 +30,7 @@ fn count_and_say(n: i32) -> String {
         }
     }
     encoded.iter().fold("".to_string(), |mut acc, e| {
-        acc.push_str(e.1.to_string().as_str());
+        acc.push(char::from_digit(e.1, 10).unwrap());
         acc.push(e.0);
         acc
     })
