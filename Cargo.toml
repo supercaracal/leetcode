@@ -154,3 +154,7 @@ path = "0037_sudoku_solver.rs"
 [[bin]]
 name = "38"
 path = "0038_count_and_say.rs"
+
+[[bin]]
+name = "39"
+path = "0039_combination_sum.rs"
