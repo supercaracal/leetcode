@@ -12,8 +12,33 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+use std::collections::HashSet;
+
 fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{candidates:?}, {target:?}");
-    vec![vec![0]]
+    let mut combs = HashSet::new();
+    let mut comb = Vec::new();
+    backtrack(&candidates, target, &mut comb, &mut combs);
+    let mut ret = Vec::new();
+    for c in combs {
+        ret.push(c);
+    }
+    ret
+}
+
+fn backtrack(candidates: &[i32], target: i32, comb: &mut Vec<i32>, combs: &mut HashSet<Vec<i32>>) {
+    let sum: i32 = comb.iter().sum();
+    if sum > target {
+        return;
+    }
+    if sum == target {
+        let mut c = comb.clone();
+        c.sort();
+        combs.insert(c);
+        return;
+    }
+    for n in candidates {
+        comb.push(*n);
+        backtrack(candidates, target, comb, combs);
+        comb.pop();
+    }
 }
