@@ -162,3 +162,7 @@ path = "0039_combination_sum.rs"
 [[bin]]
 name = "40"
 path = "0040_combination_sum_ii.rs"
+
+[[bin]]
+name = "41"
+path = "0041_first_missing_positive.rs"
