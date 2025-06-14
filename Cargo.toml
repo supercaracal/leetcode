@@ -166,3 +166,7 @@ path = "0040_combination_sum_ii.rs"
 [[bin]]
 name = "41"
 path = "0041_first_missing_positive.rs"
+
+[[bin]]
+name = "42"
+path = "0042_trapping_rain_water.rs"
