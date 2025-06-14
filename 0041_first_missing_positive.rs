@@ -16,19 +16,19 @@ fn first_missing_positive(nums: Vec<i32>) -> i32 {
     let mut nums = nums;
     let n = nums.len();
     let mut contains1 = false;
-    for i in 0..n {
-        if nums[i] == 1 {
+    for i in nums.iter_mut() {
+        if *i == 1 {
             contains1 = true;
         }
-        if nums[i] < 1 || nums[i] > (n as i32) {
-            nums[i] = 1;
+        if *i < 1 || *i > (n as i32) {
+            *i = 1;
         }
     }
     if !contains1 {
         return 1;
     }
     for i in 0..n {
-        let j = nums[i].abs() as usize;
+        let j = nums[i].unsigned_abs() as usize;
         if j == n {
             nums[0] = -(nums[0].abs());
         } else {
