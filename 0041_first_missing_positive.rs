@@ -16,12 +16,12 @@ fn first_missing_positive(nums: Vec<i32>) -> i32 {
     let mut nums = nums;
     let n = nums.len();
     let mut contains1 = false;
-    for i in nums.iter_mut() {
-        if *i == 1 {
+    for v in nums.iter_mut() {
+        if *v == 1 {
             contains1 = true;
         }
-        if *i < 1 || *i > (n as i32) {
-            *i = 1;
+        if *v < 1 || *v > (n as i32) {
+            *v = 1;
         }
     }
     if !contains1 {
@@ -35,8 +35,8 @@ fn first_missing_positive(nums: Vec<i32>) -> i32 {
             nums[j] = -(nums[j].abs());
         }
     }
-    for i in 1..n {
-        if nums[i] > 0 {
+    for (i, v) in nums.iter().enumerate() {
+        if *v > 0 {
             return i as i32;
         }
     }
