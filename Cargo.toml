@@ -170,3 +170,7 @@ path = "0041_first_missing_positive.rs"
 [[bin]]
 name = "42"
 path = "0042_trapping_rain_water.rs"
+
+[[bin]]
+name = "43"
+path = "0043_multiply_strings.rs"
