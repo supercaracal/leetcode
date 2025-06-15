@@ -35,5 +35,5 @@ fn trap(height: Vec<i32>) -> i32 {
             r -= 1;
         }
     }
-    area as i32
+    area
 }
