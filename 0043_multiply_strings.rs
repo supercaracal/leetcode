@@ -17,10 +17,7 @@ fn multiply(num1: String, num2: String) -> String {
         for (j, n2) in num2.chars().rev().enumerate() {
             let p = n1.to_digit(10).unwrap();
             let q = n2.to_digit(10).unwrap();
-            let mut sum = Vec::new();
-            for _ in 0..(i + j) {
-                sum.push(0);
-            }
+            let mut sum = vec![0; i + j];
             let mut v = p * q;
             while v > 0 {
                 sum.push(v % 10);
