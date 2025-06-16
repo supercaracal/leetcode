@@ -174,3 +174,7 @@ path = "0042_trapping_rain_water.rs"
 [[bin]]
 name = "43"
 path = "0043_multiply_strings.rs"
+
+[[bin]]
+name = "44"
+path = "0044_wildcard_matching.rs"
