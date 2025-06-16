@@ -8,6 +8,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn multiply(num1: String, num2: String) -> String {
+    // OPTIMIZE: tweak
     if num1 == "0" || num2 == "0" {
         return "0".to_string();
     }
