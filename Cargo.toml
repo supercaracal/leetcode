@@ -178,3 +178,7 @@ path = "0043_multiply_strings.rs"
 [[bin]]
 name = "44"
 path = "0044_wildcard_matching.rs"
+
+[[bin]]
+name = "45"
+path = "0045_jump_game.rs"
