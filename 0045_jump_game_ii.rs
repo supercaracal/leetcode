@@ -12,6 +12,7 @@ fn main() -> Result<(), &'static str> {
 }
 
 // https://www.youtube.com/watch?v=dJ7sWiOoK7g
+#[allow(clippy::needless_range_loop)]
 fn jump(nums: Vec<i32>) -> i32 {
     let mut cnt = 0;
     let mut l = 0;
