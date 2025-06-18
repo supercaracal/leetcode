@@ -182,3 +182,7 @@ path = "0044_wildcard_matching.rs"
 [[bin]]
 name = "45"
 path = "0045_jump_game_ii.rs"
+
+[[bin]]
+name = "46"
+path = "0046_permutations.rs"
