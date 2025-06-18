@@ -11,21 +11,21 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// https://www.youtube.com/watch?v=dJ7sWiOoK7g
 fn jump(nums: Vec<i32>) -> i32 {
-    let mut jumps = Vec::new();
-    backtrack(nums.as_ref(), 0, 0, &mut jumps);
-    jumps.iter().min().map_or(-1, |n| *n)
-}
-
-fn backtrack(nums: &[i32], i: usize, n: i32, jumps: &mut Vec<i32>) {
-    if i == nums.len() - 1 {
-        jumps.push(n);
-        return;
+    let mut cnt = 0;
+    let mut l = 0;
+    let mut r = 0;
+    while l < nums.len() && r < nums.len() {
+        let mut farthest = 0;
+        for i in l..=r {
+            farthest = farthest.max(i as i32 + nums[i]);
+        }
+        l = r + 1;
+        r = farthest as usize;
+        if l < nums.len() {
+            cnt += 1;
+        }
     }
-    if i >= nums.len() || nums[i] == 0 {
-        return;
-    }
-    for j in 1..=nums[i] {
-        backtrack(nums, i + (j as usize), n + 1, jumps);
-    }
+    cnt
 }
