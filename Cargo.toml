@@ -186,3 +186,7 @@ path = "0045_jump_game_ii.rs"
 [[bin]]
 name = "46"
 path = "0046_permutations.rs"
+
+[[bin]]
+name = "47"
+path = "0047_permutations_ii.rs"
