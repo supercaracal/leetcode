@@ -17,7 +17,7 @@ fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
 
 // https://www.youtube.com/watch?v=FZe0UqISmUw
 fn solve(nums: &[i32]) -> Vec<Vec<i32>> {
-    if nums.len() == 0 {
+    if nums.is_empty() {
         return vec![vec![]];
     }
     let perms = solve(&nums[1..]);
