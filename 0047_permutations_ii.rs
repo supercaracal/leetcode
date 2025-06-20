@@ -13,7 +13,7 @@ fn main() -> Result<(), &'static str> {
 
 fn permute_unique(nums: Vec<i32>) -> Vec<Vec<i32>> {
     let mut p = Vec::with_capacity(nums.len());
-    let mut ps = Vec::with_capacity((1..=nums.len()).fold(1, |a, e| a * e));
+    let mut ps = Vec::with_capacity((1..=nums.len()).product());
     let mut uniq = HashSet::new();
     let mut counter = HashMap::new();
     for n in nums.iter() {
