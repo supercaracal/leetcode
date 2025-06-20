@@ -22,6 +22,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
 fn rotate(_matrix: &mut Vec<Vec<i32>>) {
     // TODO: solve
 }
