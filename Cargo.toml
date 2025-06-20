@@ -190,3 +190,7 @@ path = "0046_permutations.rs"
 [[bin]]
 name = "47"
 path = "0047_permutations_ii.rs"
+
+[[bin]]
+name = "48"
+path = "0048_rotate_image.rs"
