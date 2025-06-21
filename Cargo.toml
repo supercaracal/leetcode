@@ -198,3 +198,7 @@ path = "0048_rotate_image.rs"
 [[bin]]
 name = "49"
 path = "0049_group_anagrams.rs"
+
+[[bin]]
+name = "50"
+path = "0050_pow_x_n.rs"
