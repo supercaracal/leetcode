@@ -9,7 +9,25 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
-    // TODO: solve
-    println!("{strs:?}");
-    vec![vec![]]
+    use std::collections::HashMap;
+    let mut dict: HashMap<String, Vec<String>> = HashMap::new();
+    for s in strs {
+        let mut chars: Vec<_> = s.chars().collect();
+        chars.sort();
+        let mut k = String::with_capacity(chars.len());
+        for c in chars {
+            k.push(c);
+        }
+        if let Some(l) = dict.get_mut(&k) {
+            l.push(s);
+        } else {
+            let l = vec![s];
+            dict.insert(k, l);
+        }
+    }
+    let mut ret = Vec::with_capacity(dict.len());
+    for (_k, v) in dict {
+        ret.push(v);
+    }
+    ret
 }
