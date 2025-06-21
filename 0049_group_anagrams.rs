@@ -12,12 +12,9 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     use std::collections::HashMap;
     let mut dict: HashMap<String, Vec<String>> = HashMap::new();
     for s in strs {
-        let mut chars: Vec<_> = s.chars().collect();
-        chars.sort();
-        let mut k = String::with_capacity(chars.len());
-        for c in chars {
-            k.push(c);
-        }
+        let mut chars: Vec<_> = s.clone().into_bytes();
+        chars.sort_unstable();
+        let k = String::from_utf8(chars).unwrap();
         dict.entry(k).or_default().push(s);
     }
     dict.into_values().collect()
