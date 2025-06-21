@@ -18,16 +18,7 @@ fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         for c in chars {
             k.push(c);
         }
-        if let Some(l) = dict.get_mut(&k) {
-            l.push(s);
-        } else {
-            let l = vec![s];
-            dict.insert(k, l);
-        }
+        dict.entry(k).or_default().push(s);
     }
-    let mut ret = Vec::with_capacity(dict.len());
-    for (_k, v) in dict {
-        ret.push(v);
-    }
-    ret
+    dict.into_values().collect()
 }
