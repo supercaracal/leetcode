@@ -34,17 +34,17 @@ fn rotate(matrix: &mut Vec<Vec<i32>>) {
     let mut offset = 0;
     while offset < size / 2 {
         for i in 0..(size - offset * 2 - 1) {
-            let mut tmp = matrix[0 + i + offset][size - 1 - offset];
-            matrix[0 + i + offset][size - 1 - offset] = matrix[0 + offset][i + offset];
-            matrix[0 + offset][i + offset] = tmp;
+            let mut tmp = matrix[i + offset][size - 1 - offset];
+            matrix[i + offset][size - 1 - offset] = matrix[offset][i + offset];
+            matrix[offset][i + offset] = tmp;
 
             tmp = matrix[size - 1 - offset][size - 1 - i - offset];
-            matrix[size - 1 - offset][size - 1 - i - offset] = matrix[0 + offset][i + offset];
-            matrix[0 + offset][i + offset] = tmp;
+            matrix[size - 1 - offset][size - 1 - i - offset] = matrix[offset][i + offset];
+            matrix[offset][i + offset] = tmp;
 
-            tmp = matrix[size - 1 - i - offset][0 + offset];
-            matrix[size - 1 - i - offset][0 + offset] = matrix[0 + offset][i + offset];
-            matrix[0 + offset][i + offset] = tmp;
+            tmp = matrix[size - 1 - i - offset][offset];
+            matrix[size - 1 - i - offset][offset] = matrix[offset][i + offset];
+            matrix[offset][i + offset] = tmp;
         }
         offset += 1;
     }
