@@ -12,7 +12,14 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn max_sub_array(nums: Vec<i32>) -> i32 {
-    // TODO: solve
-    println!("{nums:?}");
-    0
+    let mut max = nums[0];
+    let mut cur = 0;
+    for n in nums {
+        if cur < 0 {
+            cur = 0;
+        }
+        cur += n;
+        max = max.max(cur);
+    }
+    max
 }
