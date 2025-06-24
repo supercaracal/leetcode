@@ -10,14 +10,35 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// https://www.youtube.com/watch?v=Ph95IHmRp5M
 fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
+    let mut col = HashSet::new();
+    let mut pos_diag = HashSet::new();
+    let mut neg_diag = HashSet::new();
     let mut ret = Vec::new();
-    for i in 0..n {
-        let mut board = vec![vec!['.'; n as usize]; n as usize];
-        board[0][i as usize] = 'Q';
-        if !backtrack(&mut board) {
-            continue;
-        }
+    let mut board = vec![vec!['.'; n as usize]; n as usize];
+    backtrack(
+        0,
+        &mut board,
+        &mut ret,
+        &mut col,
+        &mut pos_diag,
+        &mut neg_diag,
+    );
+    ret
+}
+
+use std::collections::HashSet;
+
+fn backtrack(
+    r: usize,
+    board: &mut Vec<Vec<char>>,
+    ret: &mut Vec<Vec<String>>,
+    col: &mut HashSet<i32>,
+    pos_diag: &mut HashSet<i32>,
+    neg_diag: &mut HashSet<i32>,
+) {
+    if r == board.len() {
         let ans = board
             .iter()
             .map(|row| {
@@ -30,96 +51,22 @@ fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
             .collect();
         ret.push(ans);
     }
-    ret
-}
+    for c in 0..board.len() {
+        let co = c as i32;
+        let pos = r as i32 + c as i32;
+        let neg = r as i32 - c as i32;
+        if col.contains(&co) || pos_diag.contains(&pos) || neg_diag.contains(&neg) {
+            continue;
+        }
 
-fn backtrack(board: &mut Vec<Vec<char>>) -> bool {
-    if board.len() < 2 {
-        return true;
+        col.insert(co);
+        pos_diag.insert(pos);
+        neg_diag.insert(neg);
+        board[r][c] = 'Q';
+        backtrack(r + 1, board, ret, col, pos_diag, neg_diag);
+        board[r][c] = '.';
+        col.remove(&co);
+        pos_diag.remove(&pos);
+        neg_diag.remove(&neg);
     }
-    for r in 1..board.len() {
-        for c in 0..board.len() {
-            if board[r][c] == 'Q' {
-                continue;
-            }
-            if !is_safe(r, c, board) {
-                continue;
-            }
-            board[r][c] = 'Q';
-            if backtrack(board) {
-                return true;
-            }
-            board[r][c] = '.';
-        }
-        if board[r].iter().all(|c| *c == '.') {
-            return false;
-        }
-    }
-    true
-}
-
-fn is_safe(r: usize, c: usize, board: &Vec<Vec<char>>) -> bool {
-    if board[r][c] == 'Q' {
-        return false;
-    }
-    for row in board.iter() {
-        if row[c] == 'Q' {
-            return false;
-        }
-    }
-    for c in &board[r] {
-        if *c == 'Q' {
-            return false;
-        }
-    }
-    let size = board.len();
-    let mut i = r;
-    let mut j = c;
-    loop {
-        if board[i][j] == 'Q' {
-            return false;
-        }
-        if i == size - 1 || j == size - 1 {
-            break;
-        }
-        i += 1;
-        j += 1;
-    }
-    i = r;
-    j = c;
-    loop {
-        if board[i][j] == 'Q' {
-            return false;
-        }
-        if i == 0 || j == 0 {
-            break;
-        }
-        i -= 1;
-        j -= 1;
-    }
-    i = r;
-    j = c;
-    loop {
-        if board[i][j] == 'Q' {
-            return false;
-        }
-        if i == size - 1 || j == 0 {
-            break;
-        }
-        i += 1;
-        j -= 1;
-    }
-    i = r;
-    j = c;
-    loop {
-        if board[i][j] == 'Q' {
-            return false;
-        }
-        if i == 0 || j == size - 1 {
-            break;
-        }
-        i -= 1;
-        j += 1;
-    }
-    true
 }
