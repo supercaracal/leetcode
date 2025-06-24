@@ -214,3 +214,7 @@ path = "0052_n_queens_ii.rs"
 [[bin]]
 name = "53"
 path = "0053_maximum_subarray.rs"
+
+[[bin]]
+name = "54"
+path = "0054_spiral_matrix.rs"
