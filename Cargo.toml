@@ -218,3 +218,7 @@ path = "0053_maximum_subarray.rs"
 [[bin]]
 name = "54"
 path = "0054_spiral_matrix.rs"
+
+[[bin]]
+name = "55"
+path = "0055_jump_game.rs"
