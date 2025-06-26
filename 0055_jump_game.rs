@@ -12,7 +12,23 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn can_jump(nums: Vec<i32>) -> bool {
-    // TODO: solve
-    println!("{nums:?}");
-    false
+    backtrack(0, &nums)
+}
+
+fn backtrack(i: usize, nums: &[i32]) -> bool {
+    if i == nums.len() - 1 {
+        return true;
+    }
+    if i >= nums.len() {
+        return false;
+    }
+    if nums[i] == 0 {
+        return false;
+    }
+    for j in 1..=nums[i] {
+        if backtrack(i + j as usize, nums) {
+            return true;
+        }
+    }
+    return false;
 }
