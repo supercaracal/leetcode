@@ -21,6 +21,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::needless_range_loop)]
 fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {
     let (m, n) = (matrix.len(), matrix[0].len());
     let size = m * n;
