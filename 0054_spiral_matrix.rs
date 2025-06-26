@@ -22,9 +22,36 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn spiral_order(matrix: Vec<Vec<i32>>) -> Vec<i32> {
-    // TODO: solve
-    for row in matrix {
-        println!("{row:?}");
+    let (m, n) = (matrix.len(), matrix[0].len());
+    let size = m * n;
+    let mut ret = Vec::with_capacity(size);
+    let (mut t, mut b, mut l, mut r) = (0, m - 1, 0, n - 1);
+    while ret.len() < size {
+        for i in l..=r {
+            ret.push(matrix[t][i]);
+        }
+        if ret.len() == size {
+            break;
+        }
+        for i in (t + 1)..=b {
+            ret.push(matrix[i][r]);
+        }
+        if ret.len() == size {
+            break;
+        }
+        for i in (l..r).rev() {
+            ret.push(matrix[b][i]);
+        }
+        if ret.len() == size {
+            break;
+        }
+        for i in ((t + 1)..b).rev() {
+            ret.push(matrix[i][l]);
+        }
+        t += 1;
+        b -= 1;
+        l += 1;
+        r -= 1;
     }
-    vec![]
+    ret
 }
