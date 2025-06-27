@@ -20,6 +20,25 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn merge(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-    // TODO: solve
-    intervals
+    let mut intervals = intervals;
+    intervals.sort_by(|a, b| a[0].cmp(&b[0]));
+    let mut ret = Vec::new();
+    for i in 0..intervals.len() {
+        let curr = &intervals[i];
+        if ret.is_empty() {
+            ret.push(curr.clone());
+            continue;
+        }
+        let mut prev = ret.pop().unwrap();
+        if prev[1] >= curr[0] && prev[1] >= curr[1] {
+            ret.push(prev);
+        } else if prev[1] >= curr[0] {
+            prev[1] = curr[1];
+            ret.push(prev);
+        } else {
+            ret.push(prev);
+            ret.push(curr.clone());
+        }
+    }
+    ret
 }
