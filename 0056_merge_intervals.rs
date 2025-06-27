@@ -23,8 +23,7 @@ fn merge(intervals: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     let mut intervals = intervals;
     intervals.sort_by(|a, b| a[0].cmp(&b[0]));
     let mut ret = Vec::new();
-    for i in 0..intervals.len() {
-        let curr = &intervals[i];
+    for curr in intervals.iter() {
         if ret.is_empty() {
             ret.push(curr.clone());
             continue;
