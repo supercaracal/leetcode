@@ -11,24 +11,13 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// https://www.youtube.com/watch?v=Yan0cv2cLy8
 fn can_jump(nums: Vec<i32>) -> bool {
-    backtrack(0, &nums)
-}
-
-fn backtrack(i: usize, nums: &[i32]) -> bool {
-    if i == nums.len() - 1 {
-        return true;
-    }
-    if i >= nums.len() {
-        return false;
-    }
-    if nums[i] == 0 {
-        return false;
-    }
-    for j in 1..=nums[i] {
-        if backtrack(i + j as usize, nums) {
-            return true;
+    let mut r = nums.len() - 1;
+    for i in (0..nums.len() - 1).rev() {
+        if i as i32 + nums[i] >= r as i32 {
+            r = i;
         }
     }
-    return false;
+    r == 0
 }
