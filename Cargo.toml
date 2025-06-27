@@ -222,3 +222,7 @@ path = "0054_spiral_matrix.rs"
 [[bin]]
 name = "55"
 path = "0055_jump_game.rs"
+
+[[bin]]
+name = "56"
+path = "0056_merge_intervals.rs"
