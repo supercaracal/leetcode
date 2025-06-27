@@ -226,3 +226,7 @@ path = "0055_jump_game.rs"
 [[bin]]
 name = "56"
 path = "0056_merge_intervals.rs"
+
+[[bin]]
+name = "57"
+path = "0057_insert_interval.rs"
