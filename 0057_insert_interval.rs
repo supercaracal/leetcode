@@ -30,8 +30,8 @@ fn insert(intervals: Vec<Vec<i32>>, new_interval: Vec<i32>) -> Vec<Vec<i32>> {
     for i in 0..intervals.len() {
         if new_interval[1] < intervals[i][0] {
             ret.push(new_interval.clone());
-            for j in i..intervals.len() {
-                ret.push(intervals[j].clone());
+            for v in intervals.iter().skip(i) {
+                ret.push(v.clone());
             }
             return ret;
         }
