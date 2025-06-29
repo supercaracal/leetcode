@@ -8,7 +8,17 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn length_of_last_word(s: String) -> i32 {
-    // TODO: solve
-    println!("{s:?}");
-    0
+    let mut cnt = 0;
+    let mut seen = false;
+    for c in s.chars().rev() {
+        if c == ' ' {
+            if seen {
+                break;
+            }
+            continue;
+        }
+        seen = true;
+        cnt += 1;
+    }
+    cnt
 }
