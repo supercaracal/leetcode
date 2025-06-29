@@ -230,3 +230,7 @@ path = "0056_merge_intervals.rs"
 [[bin]]
 name = "57"
 path = "0057_insert_interval.rs"
+
+[[bin]]
+name = "58"
+path = "0058_length_of_last_word.rs"
