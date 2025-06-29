@@ -23,9 +23,27 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// https://www.youtube.com/watch?v=A8NUOmlwOlM
 fn insert(intervals: Vec<Vec<i32>>, new_interval: Vec<i32>) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{intervals:?}");
-    println!("{new_interval:?}");
-    vec![]
+    let mut ret = Vec::new();
+    let mut new_interval = new_interval;
+    for i in 0..intervals.len() {
+        if new_interval[1] < intervals[i][0] {
+            ret.push(new_interval.clone());
+            for j in i..intervals.len() {
+                ret.push(intervals[j].clone());
+            }
+            return ret;
+        }
+        if new_interval[0] > intervals[i][1] {
+            ret.push(intervals[i].clone());
+            continue;
+        }
+        new_interval = vec![
+            intervals[i][0].min(new_interval[0]),
+            intervals[i][1].max(new_interval[1]),
+        ];
+    }
+    ret.push(new_interval);
+    ret
 }
