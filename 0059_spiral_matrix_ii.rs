@@ -8,6 +8,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::needless_range_loop)]
 fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
     let (mut t, mut b, mut l, mut r) = (0, n as usize - 1, 0, n as usize - 1);
     let mut matrix = vec![vec![0; n as usize]; n as usize];
