@@ -9,7 +9,36 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn generate_matrix(n: i32) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{n}");
-    vec![]
+    let (mut t, mut b, mut l, mut r) = (0, n as usize - 1, 0, n as usize - 1);
+    let mut matrix = vec![vec![0; n as usize]; n as usize];
+    let mut number = 1i32;
+    while l <= r && t <= b {
+        for i in l..=r {
+            matrix[t][i] = number;
+            number += 1;
+        }
+        t += 1;
+        for i in t..=b {
+            matrix[i][r] = number;
+            number += 1;
+        }
+        if r == 0 {
+            break;
+        }
+        r -= 1;
+        for i in (l..=r).rev() {
+            matrix[b][i] = number;
+            number += 1;
+        }
+        if b == 0 {
+            break;
+        }
+        b -= 1;
+        for i in (t..=b).rev() {
+            matrix[i][l] = number;
+            number += 1;
+        }
+        l += 1;
+    }
+    matrix
 }
