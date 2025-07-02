@@ -9,9 +9,10 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// TODO: Optimize
 fn get_permutation(n: i32, k: i32) -> String {
     let mut nums = (1..=n).collect();
-    let mut perms = Vec::with_capacity((1..=n).fold(1, |a, e| a * e) as usize);
+    let mut perms = Vec::with_capacity((1..=n).product::<i32>() as usize);
     let mut perm = Vec::with_capacity(n as usize);
     backtrack(n, &mut nums, &mut perm, &mut perms);
     let mut s = String::with_capacity(n as usize);
