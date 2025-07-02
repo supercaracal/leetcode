@@ -242,3 +242,7 @@ path = "0059_spiral_matrix_ii.rs"
 [[bin]]
 name = "60"
 path = "0060_permutation_sequence.rs"
+
+[[bin]]
+name = "61"
+path = "0061_rotate_list.rs"
