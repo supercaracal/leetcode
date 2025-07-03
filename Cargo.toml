@@ -246,3 +246,7 @@ path = "0060_permutation_sequence.rs"
 [[bin]]
 name = "61"
 path = "0061_rotate_list.rs"
+
+[[bin]]
+name = "62"
+path = "0062_unique_paths.rs"
