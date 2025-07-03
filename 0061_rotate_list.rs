@@ -101,7 +101,6 @@ fn concat(a: &mut Option<Box<ListNode>>, b: Option<Box<ListNode>>) {
     if let Some(node) = a {
         if node.next.is_none() {
             node.next = b;
-            return;
         } else {
             concat(&mut node.next, b);
         }
