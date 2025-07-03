@@ -60,7 +60,50 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-    // TODO: solve
-    println!("{k}");
-    head
+    if k == 0 {
+        return head;
+    }
+    let size = size(&head);
+    match size {
+        0 => return None,
+        1 => return head,
+        n if k % n == 0 => return head,
+        _ => {}
+    }
+    let tail_idx = size - (k % size);
+    let mut head = head;
+    let mut new_head = split(&mut head, tail_idx);
+    concat(&mut new_head, head);
+    new_head
+}
+
+fn size(head: &Option<Box<ListNode>>) -> i32 {
+    if let Some(ref node) = head {
+        1 + size(&node.next)
+    } else {
+        0
+    }
+}
+
+fn split(head: &mut Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
+    if let Some(h) = head {
+        if k == 1 {
+            h.next.take()
+        } else {
+            split(&mut h.next, k - 1)
+        }
+    } else {
+        None
+    }
+}
+
+fn concat(a: &mut Option<Box<ListNode>>, b: Option<Box<ListNode>>) {
+    if let Some(node) = a {
+        if node.next.is_none() {
+            node.next = b;
+            return;
+        } else {
+            concat(&mut node.next, b);
+        }
+    }
 }
