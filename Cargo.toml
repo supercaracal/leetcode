@@ -250,3 +250,7 @@ path = "0061_rotate_list.rs"
 [[bin]]
 name = "62"
 path = "0062_unique_paths.rs"
+
+[[bin]]
+name = "63"
+path = "0063_unique_paths_ii.rs"
