@@ -254,3 +254,7 @@ path = "0062_unique_paths.rs"
 [[bin]]
 name = "63"
 path = "0063_unique_paths_ii.rs"
+
+[[bin]]
+name = "64"
+path = "0064_minimum_path_sum.rs"
