@@ -22,9 +22,23 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn unique_paths_with_obstacles(obstacle_grid: Vec<Vec<i32>>) -> i32 {
-    // TODO: solve
-    for row in obstacle_grid {
-        println!("{row:?}");
+    let m = obstacle_grid.len();
+    let n = obstacle_grid[0].len();
+    let mut matrix = vec![vec![0; n]; m];
+    for r in 0..m {
+        for c in 0..n {
+            if obstacle_grid[r][c] == 1 {
+                matrix[r][c] = 0;
+            } else if r == 0 && c == 0 {
+                matrix[r][c] = 1;
+            } else if r == 0 && c > 0 {
+                matrix[r][c] = matrix[r][c - 1];
+            } else if r > 0 && c == 0 {
+                matrix[r][c] = matrix[r - 1][c];
+            } else {
+                matrix[r][c] = matrix[r - 1][c] + matrix[r][c - 1];
+            }
+        }
     }
-    0
+    matrix[m - 1][n - 1]
 }
