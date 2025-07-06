@@ -22,21 +22,21 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn min_path_sum(grid: Vec<Vec<i32>>) -> i32 {
-    let mut sums = Vec::new();
-    backtrack(&grid, 0, 0, 0, &mut sums);
-    sums.iter().min().map_or(-1, |v| *v)
-}
-
-fn backtrack(grid: &Vec<Vec<i32>>, r: usize, c: usize, sum: i32, sums: &mut Vec<i32>) {
-    let sum = sum + grid[r][c];
-    if r == grid.len() - 1 && c == grid[0].len() - 1 {
-        sums.push(sum);
-        return;
+    let mut grid = grid;
+    let m = grid.len();
+    let n = grid[0].len();
+    for r in 0..m {
+        for c in 0..n {
+            grid[r][c] = if r == 0 && c == 0 {
+                grid[r][c]
+            } else if r == 0 {
+                grid[r][c - 1] + grid[r][c]
+            } else if c == 0 {
+                grid[r - 1][c] + grid[r][c]
+            } else {
+                grid[r - 1][c].min(grid[r][c - 1]) + grid[r][c]
+            };
+        }
     }
-    if r < grid.len() - 1 {
-        backtrack(grid, r + 1, c, sum, sums);
-    }
-    if c < grid[0].len() - 1 {
-        backtrack(grid, r, c + 1, sum, sums);
-    }
+    grid[m - 1][n - 1]
 }
