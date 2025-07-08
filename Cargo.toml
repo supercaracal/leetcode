@@ -262,3 +262,7 @@ path = "0064_minimum_path_sum.rs"
 [[bin]]
 name = "65"
 path = "0065_valid_number.rs"
+
+[[bin]]
+name = "66"
+path = "0066_plus_one.rs"
