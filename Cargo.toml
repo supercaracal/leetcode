@@ -266,3 +266,7 @@ path = "0065_valid_number.rs"
 [[bin]]
 name = "66"
 path = "0066_plus_one.rs"
+
+[[bin]]
+name = "67"
+path = "0067_add_binary.rs"
