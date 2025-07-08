@@ -17,7 +17,7 @@ fn plus_one(digits: Vec<i32>) -> Vec<i32> {
     let mut i = 0;
     digits[i] += 1;
     while digits[i] >= 10 {
-        digits[i] = digits[i] - 10;
+        digits[i] -= 10;
         if i < digits.len() - 1 {
             digits[i + 1] += 1;
         } else {
