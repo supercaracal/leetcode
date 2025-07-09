@@ -270,3 +270,7 @@ path = "0066_plus_one.rs"
 [[bin]]
 name = "67"
 path = "0067_add_binary.rs"
+
+[[bin]]
+name = "68"
+path = "0068_text_justification.rs"
