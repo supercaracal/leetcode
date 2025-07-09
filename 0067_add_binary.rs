@@ -13,9 +13,7 @@ fn add_binary(a: String, b: String) -> String {
     a.reverse();
     b.reverse();
     if b.len() > a.len() {
-        let tmp = a;
-        a = b;
-        b = tmp;
+        std::mem::swap(&mut a, &mut b);
     }
     for i in 0..a.len() {
         let sum = if i < b.len() {
