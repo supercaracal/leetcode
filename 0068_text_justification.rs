@@ -5,12 +5,62 @@ fn main() -> Result<(), &'static str> {
     }
     let words: Vec<String> = args[1].split(',').map(|e| e.to_string()).collect();
     let max_width = args[2].parse::<i32>().unwrap();
-    println!("{:?}", full_justify(words, max_width));
+    for line in full_justify(words, max_width) {
+        println!("{line:?}");
+    }
     Ok(())
 }
 
 fn full_justify(words: Vec<String>, max_width: i32) -> Vec<String> {
-    // TODO: solve
-    println!("{max_width}");
-    words
+    let mut ret = Vec::new();
+    let max_width = max_width as usize;
+    let mut start = 0;
+    let mut width = 0;
+    let mut count = 0;
+    for i in 0..words.len() {
+        let min_sp_cnt = if count == 0 { 0 } else { count - 1 };
+        if max_width < width + min_sp_cnt + words[i].len() {
+            let line = justify(max_width, width, count, start..i, &words);
+            ret.push(line);
+            start = i;
+            width = 0;
+            count = 0;
+        }
+        width += words[i].len();
+        count += 1;
+    }
+    if width > 0 {
+        let line = justify(max_width, width, count, start..words.len(), &words);
+        ret.push(line);
+    }
+    ret
+}
+
+fn justify(
+    max_width: usize,
+    width: usize,
+    count: usize,
+    indices: std::ops::Range<usize>,
+    words: &[String],
+) -> String {
+    let mut line = String::with_capacity(max_width);
+    let mut total_sp_cnt = max_width - width;
+    let sp_cnt = total_sp_cnt / (count.max(2) - 1);
+    let mut sp_cnt_r = total_sp_cnt % (count.max(2) - 1);
+    for i in indices {
+        line.push_str(words[i].as_str());
+        if total_sp_cnt < 1 {
+            continue;
+        }
+        for _ in 0..sp_cnt {
+            line.push(' ');
+        }
+        if sp_cnt_r > 0 {
+            line.push(' ');
+            sp_cnt_r -= 1;
+            total_sp_cnt -= sp_cnt;
+        }
+        total_sp_cnt -= sp_cnt;
+    }
+    line
 }
