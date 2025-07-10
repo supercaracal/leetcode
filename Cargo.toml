@@ -274,3 +274,7 @@ path = "0067_add_binary.rs"
 [[bin]]
 name = "68"
 path = "0068_text_justification.rs"
+
+[[bin]]
+name = "69"
+path = "0069_sqrt_x.rs"
