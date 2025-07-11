@@ -8,6 +8,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::comparison_chain)]
 fn my_sqrt(x: i32) -> i32 {
     let (mut l, mut r) = (0, x);
     let mut res = 0;
