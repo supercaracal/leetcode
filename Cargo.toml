@@ -278,3 +278,7 @@ path = "0068_text_justification.rs"
 [[bin]]
 name = "69"
 path = "0069_sqrt_x.rs"
+
+[[bin]]
+name = "70"
+path = "0070_climbing_stairs.rs"
