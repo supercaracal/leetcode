@@ -9,6 +9,23 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn my_sqrt(x: i32) -> i32 {
-    // TODO: solve
-    x
+    let (mut l, mut r) = (0, x);
+    let mut res = 0;
+    while l <= r {
+        let m = l + ((r - l) / 2);
+        match m.checked_mul(m) {
+            Some(n) => {
+                if n > x {
+                    r = m - 1;
+                } else if n < x {
+                    l = m + 1;
+                    res = m;
+                } else {
+                    return m;
+                }
+            }
+            None => r = m - 1,
+        }
+    }
+    res
 }
