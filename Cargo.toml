@@ -282,3 +282,7 @@ path = "0069_sqrt_x.rs"
 [[bin]]
 name = "70"
 path = "0070_climbing_stairs.rs"
+
+[[bin]]
+name = "71"
+path = "0071_simplify_path.rs"
