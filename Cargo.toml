@@ -286,3 +286,7 @@ path = "0070_climbing_stairs.rs"
 [[bin]]
 name = "71"
 path = "0071_simplify_path.rs"
+
+[[bin]]
+name = "72"
+path = "0072_edit_distance.rs"
