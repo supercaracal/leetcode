@@ -8,6 +8,28 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn simplify_path(path: String) -> String {
-    // TODO: solve
-    path
+    let mut layers: Vec<String> = Vec::new();
+    let mut layer = String::new();
+    let mut path = path;
+    path.push('/');
+    for c in path.chars() {
+        match c {
+            '/' => {
+                if layer.is_empty() {
+                    // root
+                } else if layer == "." {
+                    // current
+                } else if layer == ".." {
+                    layers.pop();
+                } else {
+                    layers.push(layer.clone());
+                }
+                layer.clear();
+            }
+            _ => layer.push(c),
+        }
+    }
+    let mut ret = "/".to_string();
+    ret.push_str(layers.join("/").as_str());
+    ret
 }
