@@ -290,3 +290,7 @@ path = "0071_simplify_path.rs"
 [[bin]]
 name = "72"
 path = "0072_edit_distance.rs"
+
+[[bin]]
+name = "73"
+path = "0073_set_matrix_zeroes.rs"
