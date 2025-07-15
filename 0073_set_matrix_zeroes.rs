@@ -28,6 +28,8 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
+#[allow(clippy::needless_range_loop)]
 fn set_zeroes(matrix: &mut Vec<Vec<i32>>) {
     let mut row_zero = false;
     for r in 0..matrix.len() {
