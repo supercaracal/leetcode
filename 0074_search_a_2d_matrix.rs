@@ -22,6 +22,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::comparison_chain)]
 fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
     let mut t = 0;
     let mut b = matrix.len() - 1;
