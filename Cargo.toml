@@ -298,3 +298,7 @@ path = "0073_set_matrix_zeroes.rs"
 [[bin]]
 name = "74"
 path = "0074_search_a_2d_matrix.rs"
+
+[[bin]]
+name = "75"
+path = "0075_sort_colors.rs"
