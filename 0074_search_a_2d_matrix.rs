@@ -23,10 +23,47 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
-    // TODO: solve
-    for row in matrix.iter() {
-        println!("{row:?}");
+    let mut t = 0;
+    let mut b = matrix.len() - 1;
+    let mut x = 0;
+    while t <= b {
+        x = t + (b - t) / 2;
+        let min = matrix[x][0];
+        let max = matrix[x][matrix[x].len() - 1];
+        if target >= min && target <= max {
+            break;
+        }
+        if target > max {
+            if x == matrix.len() - 1 {
+                break;
+            }
+            t = x + 1;
+            continue;
+        }
+        if target < min {
+            if x == 0 {
+                break;
+            }
+            b = x - 1;
+        }
     }
-    println!("{target}");
+    let mut r = 0;
+    let mut l = matrix[x].len() - 1;
+    while r <= l {
+        let m = r + (l - r) / 2;
+        if target > matrix[x][m] {
+            if m == matrix[x].len() - 1 {
+                break;
+            }
+            r = m + 1;
+        } else if target < matrix[x][m] {
+            if m == 0 {
+                break;
+            }
+            l = m - 1;
+        } else {
+            return true;
+        }
+    }
     false
 }
