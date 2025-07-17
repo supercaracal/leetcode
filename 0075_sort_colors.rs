@@ -13,6 +13,24 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn sort_colors(nums: &mut Vec<i32>) {
-    // TODO: solve
-    println!("{nums:?}");
+    let mut c_zero = 0;
+    let mut c_one = 0;
+    let mut c_two = 0;
+    for n in nums.iter() {
+        match n {
+            0 => c_zero += 1,
+            1 => c_one += 1,
+            2 => c_two += 1,
+            _ => {}
+        }
+    }
+    for i in 0..c_zero {
+        nums[i] = 0;
+    }
+    for i in c_zero..(c_zero + c_one) {
+        nums[i] = 1;
+    }
+    for i in (c_zero + c_one)..(c_zero + c_one + c_two) {
+        nums[i] = 2;
+    }
 }
