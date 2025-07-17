@@ -12,6 +12,8 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
+#[allow(clippy::needless_range_loop)]
 fn sort_colors(nums: &mut Vec<i32>) {
     let mut c_zero = 0;
     let mut c_one = 0;
