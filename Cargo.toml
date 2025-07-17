@@ -302,3 +302,7 @@ path = "0074_search_a_2d_matrix.rs"
 [[bin]]
 name = "75"
 path = "0075_sort_colors.rs"
+
+[[bin]]
+name = "76"
+path = "0076_minimum_window_substring.rs"
