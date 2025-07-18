@@ -310,3 +310,7 @@ path = "0076_minimum_window_substring.rs"
 [[bin]]
 name = "77"
 path = "0077_combinations.rs"
+
+[[bin]]
+name = "78"
+path = "0078_subsets.rs"
