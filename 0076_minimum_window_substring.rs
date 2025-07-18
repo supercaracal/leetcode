@@ -42,9 +42,8 @@ fn min_window(s: String, t: String) -> String {
         }
     }
     let mut ret = String::with_capacity(min_r - min_l + 1);
-    let s_ch: Vec<char> = s.chars().collect();
-    for i in min_r..=min_l {
-        ret.push(s_ch[i]);
+    for c in s.chars().skip(min_r).take(min_l + 1) {
+        ret.push(c);
     }
     ret
 }
