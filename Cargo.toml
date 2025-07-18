@@ -306,3 +306,7 @@ path = "0075_sort_colors.rs"
 [[bin]]
 name = "76"
 path = "0076_minimum_window_substring.rs"
+
+[[bin]]
+name = "77"
+path = "0077_combinations.rs"
