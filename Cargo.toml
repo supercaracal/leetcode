@@ -314,3 +314,7 @@ path = "0077_combinations.rs"
 [[bin]]
 name = "78"
 path = "0078_subsets.rs"
+
+[[bin]]
+name = "79"
+path = "0079_word_search.rs"
