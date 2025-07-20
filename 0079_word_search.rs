@@ -16,15 +16,60 @@ fn main() -> Result<(), &'static str> {
             row = Vec::with_capacity(size);
         }
     }
+    for row in board.iter() {
+        println!("{row:?}");
+    }
     println!("{}", exist(board, args[3].clone()));
     Ok(())
 }
 
 fn exist(board: Vec<Vec<char>>, word: String) -> bool {
-    // TODO: solve
-    for row in board {
-        println!("{row:?}");
+    let word: Vec<char> = word.chars().collect();
+    if board.len() == 1 && word.len() == 1 && board[0][0] == word[0] {
+        return true;
     }
-    println!("{word:?}");
+    let mut tracks = vec![vec![false; board[0].len()]; board.len()];
+    for (y, row) in board.iter().enumerate() {
+        for (x, _) in row.iter().enumerate() {
+            if backtrack(y, x, &board, 0, &word, &mut tracks) {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+fn backtrack(
+    y: usize,
+    x: usize,
+    board: &Vec<Vec<char>>,
+    p: usize,
+    word: &Vec<char>,
+    tracks: &mut Vec<Vec<bool>>,
+) -> bool {
+    if p == word.len() {
+        return true;
+    }
+    if tracks[y][x] {
+        return false;
+    }
+    if board[y][x] != word[p] {
+        tracks[y][x] = false;
+        return false;
+    }
+    tracks[y][x] = true;
+    if y > 0 && backtrack(y - 1, x, board, p + 1, word, tracks) {
+        return true;
+    }
+    if x > 0 && backtrack(y, x - 1, board, p + 1, word, tracks) {
+        return true;
+    }
+    if y < board.len() - 1 && backtrack(y + 1, x, board, p + 1, word, tracks) {
+        return true;
+    }
+    if x < board[y].len() - 1 && backtrack(y, x + 1, board, p + 1, word, tracks) {
+        return true;
+    }
+    tracks[y][x] = false;
     false
 }
