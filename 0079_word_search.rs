@@ -23,6 +23,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// TODO: optimize
 fn exist(board: Vec<Vec<char>>, word: String) -> bool {
     let word: Vec<char> = word.chars().collect();
     if board.len() == 1 && word.len() == 1 && board[0][0] == word[0] {
