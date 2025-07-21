@@ -318,3 +318,7 @@ path = "0078_subsets.rs"
 [[bin]]
 name = "79"
 path = "0079_word_search.rs"
+
+[[bin]]
+name = "80"
+path = "0080_remove_duplicates_from_sorted_array_ii.rs"
