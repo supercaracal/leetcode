@@ -12,6 +12,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
 fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
     let mut l = 0;
     let mut cnt = 0;
