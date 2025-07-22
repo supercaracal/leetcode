@@ -8,10 +8,24 @@ fn main() -> Result<(), &'static str> {
         .map(|e| e.parse::<i32>().unwrap())
         .collect::<Vec<_>>();
     println!("{}", remove_duplicates(&mut nums));
+    println!("{nums:?}");
     Ok(())
 }
 
 fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
-    // TODO: solve
-    nums[0]
+    let mut l = 0;
+    let mut cnt = 0;
+    let mut curr = i32::MAX;
+    for r in 0..nums.len() {
+        if nums[r] != curr {
+            curr = nums[r];
+            cnt = 0;
+        }
+        nums[l] = nums[r];
+        cnt += 1;
+        if cnt <= 2 {
+            l += 1;
+        }
+    }
+    l as i32
 }
