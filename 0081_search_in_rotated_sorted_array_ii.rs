@@ -12,6 +12,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::comparison_chain)]
 fn search(nums: Vec<i32>, target: i32) -> bool {
     let mut l = 0;
     let mut r = nums.len() - 1;
