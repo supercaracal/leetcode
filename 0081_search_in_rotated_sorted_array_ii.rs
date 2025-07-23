@@ -13,8 +13,40 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn search(nums: Vec<i32>, target: i32) -> bool {
-    // TODO: solve
-    println!("{nums:?}");
-    println!("{target}");
+    let mut l = 0;
+    let mut r = nums.len() - 1;
+    while l <= r {
+        let m = l + (r - l) / 2;
+        if nums[m] == target {
+            return true;
+        }
+        if nums[l] < nums[m] {
+            if nums[l] <= target && target < nums[m] {
+                if m == 0 {
+                    return false;
+                }
+                r = m - 1;
+            } else {
+                if m == nums.len() - 1 {
+                    return false;
+                }
+                l = m + 1;
+            }
+        } else if nums[l] > nums[m] {
+            if nums[m] < target && target <= nums[r] {
+                if m == nums.len() - 1 {
+                    return false;
+                }
+                l = m + 1;
+            } else {
+                if m == 0 {
+                    return false;
+                }
+                r = m - 1;
+            }
+        } else {
+            l += 1;
+        }
+    }
     false
 }
