@@ -60,9 +60,7 @@ fn main() -> Result<(), &'static str> {
 
 fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
     // TODO: fix
-    if head.is_none() {
-        return None;
-    }
+    head.as_ref()?;
     if let Some(mut node) = head {
         if let Some(next) = delete_duplicates(node.next.take()) {
             node.next = if node.val == next.val {
