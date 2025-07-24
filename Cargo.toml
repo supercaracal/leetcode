@@ -334,3 +334,7 @@ path = "0082_remove_duplicates_from_sorted_list_ii.rs"
 [[bin]]
 name = "83"
 path = "0083_remove_duplicates_from_sorted_list.rs"
+
+[[bin]]
+name = "84"
+path = "0084_largest_rectangle_in_histogram.rs"
