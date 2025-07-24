@@ -330,3 +330,7 @@ path = "0081_search_in_rotated_sorted_array_ii.rs"
 [[bin]]
 name = "82"
 path = "0082_remove_duplicates_from_sorted_list_ii.rs"
+
+[[bin]]
+name = "83"
+path = "0083_remove_duplicates_from_sorted_list.rs"
