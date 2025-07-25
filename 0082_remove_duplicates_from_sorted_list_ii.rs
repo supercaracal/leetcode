@@ -59,17 +59,26 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    // TODO: fix
-    head.as_ref()?;
+    let mut dummy = Box::new(ListNode::new(i32::MAX));
+    dummy.next = head;
+    let (root, _) = delete(Some(dummy));
+    root.unwrap().next
+}
+
+fn delete(head: Option<Box<ListNode>>) -> (Option<Box<ListNode>>, bool) {
+    let mut is_dup = false;
     if let Some(mut node) = head {
-        if let Some(next) = delete_duplicates(node.next.take()) {
+        if let (Some(next), next_dup) = delete(node.next.take()) {
             node.next = if node.val == next.val {
+                is_dup = true;
+                next.next
+            } else if next_dup {
                 next.next
             } else {
                 Some(next)
             };
         }
-        return Some(node);
+        return (Some(node), is_dup);
     }
-    None
+    (None, is_dup)
 }
