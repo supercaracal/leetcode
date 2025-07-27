@@ -18,9 +18,32 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn maximal_rectangle(matrix: Vec<Vec<char>>) -> i32 {
-    // TODO: solve
-    for row in matrix.iter() {
-        println!("{row:?}");
+    let mut max_area = 0;
+    for (r, row) in matrix.iter().enumerate() {
+        let mut stack = Vec::with_capacity(row.len());
+        for (c, _) in row.iter().enumerate() {
+            let mut h = 0;
+            for i in (0..=r).rev() {
+                if matrix[i][c] == '1' {
+                    h += 1;
+                } else {
+                    break;
+                }
+            }
+            let mut start = c;
+            while let Some((si, sh)) = stack.pop() {
+                if sh <= h {
+                    stack.push((si, sh));
+                    break;
+                }
+                max_area = max_area.max(sh * ((c - si) as i32));
+                start = si;
+            }
+            stack.push((start, h));
+        }
+        for (i, h) in stack.iter() {
+            max_area = max_area.max(h * ((row.len() - i) as i32));
+        }
     }
-    0
+    max_area
 }
