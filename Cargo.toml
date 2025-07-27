@@ -342,3 +342,7 @@ path = "0084_largest_rectangle_in_histogram.rs"
 [[bin]]
 name = "85"
 path = "0085_maximal_rectangle.rs"
+
+[[bin]]
+name = "86"
+path = "0086_partition_list.rs"
