@@ -60,7 +60,20 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn partition(head: Option<Box<ListNode>>, x: i32) -> Option<Box<ListNode>> {
-    // TODO: solve
-    println!("{x}");
-    head
+    // TODO: fix
+    if let Some(mut node) = head {
+        if let Some(mut next) = partition(node.next.take(), x) {
+            if node.val >= x && next.val < x {
+                let n2 = next.next;
+                node.next = n2;
+                next.next = Some(node);
+                return Some(next);
+            } else {
+                node.next = partition(Some(next), x);
+                return Some(node);
+            }
+        }
+        return Some(node);
+    }
+    None
 }
