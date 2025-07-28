@@ -346,3 +346,7 @@ path = "0085_maximal_rectangle.rs"
 [[bin]]
 name = "86"
 path = "0086_partition_list.rs"
+
+[[bin]]
+name = "87"
+path = "0087_scramble_string.rs"
