@@ -350,3 +350,7 @@ path = "0086_partition_list.rs"
 [[bin]]
 name = "87"
 path = "0087_scramble_string.rs"
+
+[[bin]]
+name = "88"
+path = "0088_merge_sorted_array.rs"
