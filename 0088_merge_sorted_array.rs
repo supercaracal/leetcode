@@ -19,7 +19,23 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
-    // TODO: solve
-    println!("nums1={nums1:?}, m={m}");
-    println!("nums2={nums2:?}, n={n}");
+    let mut m = m as usize;
+    let mut n = n as usize;
+    let mut p = nums1.len();
+    while m > 0 || n > 0 {
+        if m > 0 && n == 0 {
+            nums1[p - 1] = nums1[m - 1];
+            m -= 1;
+        } else if m == 0 && n > 0 {
+            nums1[p - 1] = nums2[n - 1];
+            n -= 1;
+        } else if nums1[m - 1] >= nums2[n - 1] {
+            nums1[p - 1] = nums1[m - 1];
+            m -= 1;
+        } else {
+            nums1[p - 1] = nums2[n - 1];
+            n -= 1;
+        }
+        p -= 1;
+    }
 }
