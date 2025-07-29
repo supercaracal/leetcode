@@ -18,6 +18,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::ptr_arg)]
 fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
     let mut m = m as usize;
     let mut n = n as usize;
