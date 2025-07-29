@@ -354,3 +354,7 @@ path = "0087_scramble_string.rs"
 [[bin]]
 name = "88"
 path = "0088_merge_sorted_array.rs"
+
+[[bin]]
+name = "89"
+path = "0089_gray_code.rs"
