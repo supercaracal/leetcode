@@ -362,3 +362,7 @@ path = "0089_gray_code.rs"
 [[bin]]
 name = "90"
 path = "0090_subsets_ii.rs"
+
+[[bin]]
+name = "91"
+path = "0091_decode_ways.rs"
