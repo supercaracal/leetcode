@@ -32,6 +32,7 @@ fn backtrack(
     }
     subset.sort();
     subsets.insert(subset);
+    // TODO: figure out a bitwise way
     for i in (start..nums.len())
         .filter(|e| !indices.contains(e))
         .collect::<Vec<_>>()
