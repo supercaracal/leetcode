@@ -358,3 +358,7 @@ path = "0088_merge_sorted_array.rs"
 [[bin]]
 name = "89"
 path = "0089_gray_code.rs"
+
+[[bin]]
+name = "90"
+path = "0090_subsets_ii.rs"
