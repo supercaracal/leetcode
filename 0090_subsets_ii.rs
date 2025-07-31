@@ -12,7 +12,32 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn subsets_with_dup(nums: Vec<i32>) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{nums:?}");
-    vec![]
+    let mut indices = Vec::new();
+    let mut subsets = HashSet::new();
+    backtrack(nums.as_ref(), 0, &mut indices, &mut subsets);
+    subsets.into_iter().collect()
+}
+
+use std::collections::HashSet;
+
+fn backtrack(
+    nums: &[i32],
+    start: usize,
+    indices: &mut Vec<usize>,
+    subsets: &mut HashSet<Vec<i32>>,
+) {
+    let mut subset = Vec::with_capacity(indices.len());
+    for i in indices.iter() {
+        subset.push(nums[*i]);
+    }
+    subset.sort();
+    subsets.insert(subset);
+    for i in (start..nums.len())
+        .filter(|e| !indices.contains(e))
+        .collect::<Vec<_>>()
+    {
+        indices.push(i);
+        backtrack(nums, i + 1, indices, subsets);
+        indices.pop();
+    }
 }
