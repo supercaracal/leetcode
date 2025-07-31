@@ -5,7 +5,7 @@ fn main() -> Result<(), &'static str> {
     }
     let n = args[1].parse::<i32>().unwrap();
     for row in solve_n_queens(n) {
-        println!("{:?}", row);
+        println!("{row:?}");
     }
     Ok(())
 }
