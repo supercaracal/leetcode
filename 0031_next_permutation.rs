@@ -8,7 +8,7 @@ fn main() -> Result<(), &'static str> {
         .map(|e| e.parse::<i32>().unwrap())
         .collect();
     next_permutation(&mut nums);
-    println!("{:?}", nums);
+    println!("{nums:?}");
     Ok(())
 }
 
