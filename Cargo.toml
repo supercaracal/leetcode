@@ -366,3 +366,7 @@ path = "0090_subsets_ii.rs"
 [[bin]]
 name = "91"
 path = "0091_decode_ways.rs"
+
+[[bin]]
+name = "92"
+path = "0092_reverse_linked_list_ii.rs"
