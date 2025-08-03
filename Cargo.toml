@@ -370,3 +370,7 @@ path = "0091_decode_ways.rs"
 [[bin]]
 name = "92"
 path = "0092_reverse_linked_list_ii.rs"
+
+[[bin]]
+name = "93"
+path = "0093_restore_ip_addresses.rs"
