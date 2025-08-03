@@ -62,6 +62,7 @@ fn main() -> Result<(), &'static str> {
 
 fn reverse_between(head: Option<Box<ListNode>>, left: i32, right: i32) -> Option<Box<ListNode>> {
     // TODO: fix
+    // I've got lost ways to manipulate nodes in Rust.
     println!("{left}, {right}");
     let mut dummy = Box::new(ListNode::new(-1));
     dummy.next = head;
