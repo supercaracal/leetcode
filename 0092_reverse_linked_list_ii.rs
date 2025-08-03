@@ -61,7 +61,9 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn reverse_between(head: Option<Box<ListNode>>, left: i32, right: i32) -> Option<Box<ListNode>> {
-    // TODO: solve
-    println!("l={left}, r={right}");
-    head
+    // TODO: fix
+    println!("{left}, {right}");
+    let mut dummy = Box::new(ListNode::new(-1));
+    dummy.next = head;
+    dummy.next
 }
