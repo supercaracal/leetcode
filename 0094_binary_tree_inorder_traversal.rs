@@ -38,7 +38,7 @@ impl std::fmt::Debug for TreeNode {
 
 fn parse_arg(arg: &str) -> Vec<Option<i32>> {
     arg.split(',')
-        .map(|e| e.parse::<i32>().map_or(None, |v| Some(v)))
+        .map(|e| e.parse::<i32>().ok())
         .collect()
 }
 
