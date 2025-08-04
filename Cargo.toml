@@ -378,3 +378,7 @@ path = "0093_restore_ip_addresses.rs"
 [[bin]]
 name = "94"
 path = "0094_binary_tree_inorder_traversal.rs"
+
+[[bin]]
+name = "95"
+path = "0095_unique_binary_search_trees_ii.rs"
