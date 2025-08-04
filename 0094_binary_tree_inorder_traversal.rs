@@ -37,26 +37,27 @@ impl std::fmt::Debug for TreeNode {
 }
 
 fn parse_arg(arg: &str) -> Vec<Option<i32>> {
-    arg.split(',')
-        .map(|e| e.parse::<i32>().ok())
-        .collect()
+    arg.split(',').map(|e| e.parse::<i32>().ok()).collect()
 }
 
-//                 0
-//            1          2
-//          3   4     5     6
-//         7 8 9 10 11 12 13 14
+//           0
+//      1          2
+//   3    4     5     6
+//  7 8  9 10 11 12 13 14
 fn build_tree(nums: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
     let nodes = nums
         .iter()
         .map(|v| v.and_then(|e| Some(Rc::new(RefCell::new(TreeNode::new(e))))))
         .collect::<Vec<_>>();
     let mut offset = 1;
-    // TODO: fix a bug for the link of tail node
+    let mut last_node_consumed = false;
     for i in 0..nodes.len() {
         if let Some(node) = nodes[i].clone() {
             if i + offset < nodes.len() {
                 node.borrow_mut().left = nodes[i + offset].clone();
+            } else if !last_node_consumed {
+                node.borrow_mut().left = nodes.last().and_then(|n| n.clone());
+                last_node_consumed = true;
             }
             offset += 1;
             if i + offset < nodes.len() {
@@ -78,7 +79,17 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-    // TODO: solve
-    println!("{root:?}");
-    vec![]
+    let mut vals = Vec::new();
+    bfs(root, &mut vals);
+    vals
+}
+
+fn bfs(root: Option<Rc<RefCell<TreeNode>>>, vals: &mut Vec<i32>) {
+    if let Some(node) = root {
+        let node = node.clone();
+        let node = node.borrow();
+        bfs(node.left.clone(), vals);
+        vals.push(node.val);
+        bfs(node.right.clone(), vals);
+    }
 }
