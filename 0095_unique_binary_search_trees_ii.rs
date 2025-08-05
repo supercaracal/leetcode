@@ -47,7 +47,25 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn generate_trees(n: i32) -> Vec<Option<Rc<RefCell<TreeNode>>>> {
-    // TODO: solve
-    println!("{:?}", TreeNode::new(n));
-    vec![]
+    backtrack(1, n as usize)
+}
+
+fn backtrack(l: usize, r: usize) -> Vec<Option<Rc<RefCell<TreeNode>>>> {
+    // https://www.youtube.com/watch?v=m907FlQa2Yc
+    if l > r {
+        return vec![None; 1];
+    }
+    let mut trees = Vec::new();
+    for v in l..=r {
+        for left in backtrack(l, v - 1).iter() {
+            for right in backtrack(v + 1, r).iter() {
+                let mut node = TreeNode::new(v as i32);
+                node.left = left.clone();
+                node.right = right.clone();
+                let root = Some(Rc::new(RefCell::new(node)));
+                trees.push(root);
+            }
+        }
+    }
+    trees
 }
