@@ -382,3 +382,7 @@ path = "0094_binary_tree_inorder_traversal.rs"
 [[bin]]
 name = "95"
 path = "0095_unique_binary_search_trees_ii.rs"
+
+[[bin]]
+name = "96"
+path = "0096_unique_binary_search_trees.rs"
