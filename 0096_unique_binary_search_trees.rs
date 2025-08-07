@@ -9,6 +9,21 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn num_trees(n: i32) -> i32 {
-    // TODO: solve
-    n
+    use std::collections::HashMap;
+    let mut cache = HashMap::new();
+    fn count(l: usize, r: usize, cache: &mut HashMap<(usize, usize), usize>) -> usize {
+        if l > r {
+            return 1;
+        }
+        if let Some(v) = cache.get(&(l, r)) {
+            return *v;
+        }
+        let mut cnt = 0;
+        for v in l..=r {
+            cnt += count(l, v - 1, cache) * count(v + 1, r, cache);
+        }
+        cache.insert((l, r), cnt);
+        cnt
+    }
+    count(1, n as usize, &mut cache) as i32
 }
