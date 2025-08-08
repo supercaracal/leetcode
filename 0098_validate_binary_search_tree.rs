@@ -75,7 +75,21 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn is_valid_bst(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-    // TODO: solve
-    println!("{root:?}");
-    false
+    fn bfs(root: Option<Rc<RefCell<TreeNode>>>, vals: &mut Vec<i32>) {
+        if let Some(ref node) = root {
+            let node = node.clone();
+            let node = node.borrow();
+            bfs(node.left.clone(), vals);
+            vals.push(node.val);
+            bfs(node.right.clone(), vals);
+        }
+    }
+    let mut vals = Vec::new();
+    bfs(root, &mut vals);
+    for i in 0..vals.len() {
+        if i < vals.len() - 1 && vals[i] >= vals[i + 1] {
+            return false;
+        }
+    }
+    true
 }
