@@ -390,3 +390,7 @@ path = "0096_unique_binary_search_trees.rs"
 [[bin]]
 name = "97"
 path = "0097_interleaving_string.rs"
+
+[[bin]]
+name = "98"
+path = "0098_validate_binary_search_tree.rs"
