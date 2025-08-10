@@ -398,3 +398,7 @@ path = "0098_validate_binary_search_tree.rs"
 [[bin]]
 name = "99"
 path = "0099_recover_binary_search_tree.rs"
+
+[[bin]]
+name = "100"
+path = "0100_same_tree.rs"
