@@ -88,11 +88,8 @@ fn recover_tree(root: &mut Option<Rc<RefCell<TreeNode>>>) {
             b = Some(list[i + 1]);
         }
     }
-    match (a, b) {
-        (Some(a), Some(b)) => {
-            recover(root, a, b);
-        }
-        _ => {}
+    if let (Some(a), Some(b)) = (a, b) {
+        recover(root, a, b);
     }
 }
 
