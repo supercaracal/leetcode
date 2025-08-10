@@ -1,4 +1,3 @@
-
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -20,10 +19,10 @@ impl TreeNode {
 }
 
 fn dig(node: &TreeNode, list: &mut std::fmt::DebugList) {
-    list.entry(&node.val);
     if let Some(ref n) = node.left {
         dig(&n.clone().borrow(), list);
     }
+    list.entry(&node.val);
     if let Some(ref n) = node.right {
         dig(&n.clone().borrow(), list);
     }
@@ -77,6 +76,44 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn recover_tree(root: &mut Option<Rc<RefCell<TreeNode>>>) {
-    // TODO: solve
-    println!("{root:?}");
+    let mut list = Vec::new();
+    bfs(root, &mut list);
+    let mut a = None;
+    let mut b = None;
+    for i in 0..list.len() {
+        if i + 1 < list.len() && list[i] > list[i + 1] {
+            if a.is_none() {
+                a = Some(list[i]);
+            }
+            b = Some(list[i + 1]);
+        }
+    }
+    match (a, b) {
+        (Some(a), Some(b)) => {
+            recover(root, a, b);
+        }
+        _ => {}
+    }
+}
+
+fn bfs(head: &mut Option<Rc<RefCell<TreeNode>>>, list: &mut Vec<i32>) {
+    if let Some(h) = head {
+        let mut n = h.borrow_mut();
+        bfs(&mut n.left, list);
+        list.push(n.val);
+        bfs(&mut n.right, list);
+    }
+}
+
+fn recover(head: &mut Option<Rc<RefCell<TreeNode>>>, a: i32, b: i32) {
+    if let Some(h) = head {
+        let mut n = h.borrow_mut();
+        if n.val == a {
+            n.val = b;
+        } else if n.val == b {
+            n.val = a;
+        }
+        recover(&mut n.left, a, b);
+        recover(&mut n.right, a, b);
+    }
 }
