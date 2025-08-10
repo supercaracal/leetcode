@@ -402,3 +402,7 @@ path = "0099_recover_binary_search_tree.rs"
 [[bin]]
 name = "100"
 path = "0100_same_tree.rs"
+
+[[bin]]
+name = "101"
+path = "0101_symmetric_tree.rs"
