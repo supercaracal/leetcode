@@ -80,12 +80,9 @@ fn is_same_tree(p: Option<Rc<RefCell<TreeNode>>>, q: Option<Rc<RefCell<TreeNode>
         (Some(pr), Some(qr)) => {
             if pr.borrow().val != qr.borrow().val {
                 false
-            } else if !is_same_tree(pr.borrow().left.clone(), qr.borrow().left.clone()) {
-                false
-            } else if !is_same_tree(pr.borrow().right.clone(), qr.borrow().right.clone()) {
-                false
             } else {
-                true
+                is_same_tree(pr.borrow().right.clone(), qr.borrow().right.clone())
+                    && is_same_tree(pr.borrow().left.clone(), qr.borrow().left.clone())
             }
         }
         (Some(_), None) => false,
