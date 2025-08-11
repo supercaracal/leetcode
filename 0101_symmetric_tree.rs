@@ -75,7 +75,21 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn is_symmetric(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-    // TODO: solve
-    println!("{root:?}");
-    false
+    if let Some(r) = root.clone() {
+        dfs(r.borrow().left.clone(), r.borrow().right.clone())
+    } else {
+        false
+    }
+}
+
+fn dfs(left: Option<Rc<RefCell<TreeNode>>>, right: Option<Rc<RefCell<TreeNode>>>) -> bool {
+    match (left.clone(), right.clone()) {
+        (Some(l), Some(r)) => {
+            l.borrow().val == r.borrow().val
+                && dfs(l.borrow().left.clone(), r.borrow().right.clone())
+                && dfs(l.borrow().right.clone(), r.borrow().left.clone())
+        }
+        (None, None) => true,
+        _ => false,
+    }
 }
