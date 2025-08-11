@@ -406,3 +406,7 @@ path = "0100_same_tree.rs"
 [[bin]]
 name = "101"
 path = "0101_symmetric_tree.rs"
+
+[[bin]]
+name = "102"
+path = "0102_binary_tree_level_order_traversal.rs"
