@@ -75,7 +75,19 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{root:?}");
-    vec![]
+    fn dfs(head: Option<Rc<RefCell<TreeNode>>>, level: usize, res: &mut Vec<Vec<i32>>) {
+        if let Some(hr) = head.clone() {
+            let hr = hr.clone();
+            let hrc = hr.borrow();
+            if res.len() < level + 1 {
+                res.push(Vec::new());
+            }
+            res[level].push(hrc.val);
+            dfs(hrc.left.clone(), level + 1, res);
+            dfs(hrc.right.clone(), level + 1, res);
+        }
+    }
+    let mut res = Vec::new();
+    dfs(root, 0, &mut res);
+    res
 }
