@@ -74,8 +74,28 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+//           1
+//      2          3
+//   4    _     _     5
 fn zigzag_level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{root:?}");
-    vec![]
+    fn dfs(head: Option<Rc<RefCell<TreeNode>>>, index: usize, list: &mut Vec<Vec<i32>>) {
+        if let Some(hr) = head {
+            if index + 1 > list.len() {
+                list.push(Vec::new());
+            }
+            let hr = hr.clone();
+            let hrc = hr.borrow();
+            list[index].push(hrc.val);
+            dfs(hrc.left.clone(), index + 1, list);
+            dfs(hrc.right.clone(), index + 1, list);
+        }
+    }
+    let mut list = Vec::new();
+    dfs(root, 0, &mut list);
+    for (i, e) in list.iter_mut().enumerate() {
+        if i % 2 == 1 {
+            e.reverse();
+        }
+    }
+    list
 }
