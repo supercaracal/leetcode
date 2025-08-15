@@ -418,3 +418,7 @@ path = "0103_binary_tree_zigzag_level_order_traversal.rs"
 [[bin]]
 name = "104"
 path = "0104_maximum_depth_of_binary_tree.rs"
+
+[[bin]]
+name = "105"
+path = "0105_construct_binary_tree_from_preorder_and_inorder_traversal.rs"
