@@ -1,4 +1,3 @@
-
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -76,7 +75,11 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    // TODO: solve
-    println!("{root:?}");
-    0
+    if let Some(rr) = root {
+        let rr = rr.clone();
+        let rrc = rr.borrow();
+        1 + max_depth(rrc.left.clone()).max(max_depth(rrc.right.clone()))
+    } else {
+        0
+    }
 }
