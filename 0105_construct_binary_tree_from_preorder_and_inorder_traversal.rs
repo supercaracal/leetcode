@@ -52,8 +52,19 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-    // TODO: solve
-    println!("{preorder:?}");
-    println!("{inorder:?}");
-    Some(Rc::new(RefCell::new(TreeNode::new(0))))
+    build(&preorder, &inorder)
+}
+
+fn build(preorder: &[i32], inorder: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
+    // https://www.youtube.com/watch?v=ihj4IQGZ2zc
+    if preorder.is_empty() || inorder.is_empty() {
+        return None;
+    }
+    let root = Rc::new(RefCell::new(TreeNode::new(preorder[0])));
+    let mid = inorder.iter().position(|e| e == &preorder[0]).unwrap();
+    let rr = root.clone();
+    let mut rrc = rr.borrow_mut();
+    rrc.left = build(&preorder[1..(mid + 1)], &inorder[..mid]);
+    rrc.right = build(&preorder[(mid + 1)..], &inorder[(mid + 1)..]);
+    Some(root.clone())
 }
