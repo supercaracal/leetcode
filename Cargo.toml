@@ -430,3 +430,7 @@ path = "0106_construct_binary_tree_from_inorder_and_postorder_traversal.rs"
 [[bin]]
 name = "107"
 path = "0107_binary_tree_level_order_traversal_ii.rs"
+
+[[bin]]
+name = "108"
+path = "0108_convert_sorted_array_to_binary_search_tree.rs"
