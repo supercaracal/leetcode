@@ -59,7 +59,6 @@ fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeN
         cache.insert(*v, i as i32);
     }
     fn dfs(
-        inorder: &[i32],
         postorder: &mut Vec<i32>,
         l: i32,
         r: i32,
@@ -73,15 +72,9 @@ fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeN
         let m = cache.get(&rv).unwrap();
         let rr = root.clone();
         let mut rrc = rr.borrow_mut();
-        rrc.right = dfs(inorder, postorder, m + 1, r, cache);
-        rrc.left = dfs(inorder, postorder, l, m - 1, cache);
+        rrc.right = dfs(postorder, m + 1, r, cache);
+        rrc.left = dfs(postorder, l, m - 1, cache);
         Some(root.clone())
     }
-    dfs(
-        &inorder,
-        &mut postorder,
-        0,
-        inorder.len() as i32 - 1,
-        &cache,
-    )
+    dfs(&mut postorder, 0, inorder.len() as i32 - 1, &cache)
 }
