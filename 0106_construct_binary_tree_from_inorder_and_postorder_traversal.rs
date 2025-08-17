@@ -19,10 +19,10 @@ impl TreeNode {
 }
 
 fn dig(node: &TreeNode, list: &mut std::fmt::DebugList) {
+    list.entry(&node.val);
     if let Some(ref n) = node.left {
         dig(&n.clone().borrow(), list);
     }
-    list.entry(&node.val);
     if let Some(ref n) = node.right {
         dig(&n.clone().borrow(), list);
     }
@@ -52,8 +52,36 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-    // TODO: solve
-    println!("{inorder:?}");
-    println!("{postorder:?}");
-    Some(Rc::new(RefCell::new(TreeNode::new(0))))
+    use std::collections::HashMap;
+    let mut postorder = postorder;
+    let mut cache = HashMap::new();
+    for (i, v) in inorder.iter().enumerate() {
+        cache.insert(*v, i as i32);
+    }
+    fn dfs(
+        inorder: &[i32],
+        postorder: &mut Vec<i32>,
+        l: i32,
+        r: i32,
+        cache: &HashMap<i32, i32>,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        if l > r {
+            return None;
+        }
+        let rv = postorder.pop().unwrap();
+        let root = Rc::new(RefCell::new(TreeNode::new(rv)));
+        let m = cache.get(&rv).unwrap();
+        let rr = root.clone();
+        let mut rrc = rr.borrow_mut();
+        rrc.right = dfs(inorder, postorder, m + 1, r, cache);
+        rrc.left = dfs(inorder, postorder, l, m - 1, cache);
+        Some(root.clone())
+    }
+    dfs(
+        &inorder,
+        &mut postorder,
+        0,
+        inorder.len() as i32 - 1,
+        &cache,
+    )
 }
