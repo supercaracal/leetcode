@@ -81,9 +81,7 @@ fn level_order_bottom(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
             if let Some(l) = levels.get_mut(level) {
                 l.push(hrc.val);
             } else {
-                let mut l = Vec::new();
-                l.push(hrc.val);
-                levels.push(l);
+                levels.push(vec![hrc.val]);
             }
             dfs(hrc.left.clone(), level + 1, levels);
             dfs(hrc.right.clone(), level + 1, levels);
