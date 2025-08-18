@@ -434,3 +434,7 @@ path = "0107_binary_tree_level_order_traversal_ii.rs"
 [[bin]]
 name = "108"
 path = "0108_convert_sorted_array_to_binary_search_tree.rs"
+
+[[bin]]
+name = "109"
+path = "0109_convert_sorted_list_to_binary_search_tree.rs"
