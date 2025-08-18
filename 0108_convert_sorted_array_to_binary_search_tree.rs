@@ -50,7 +50,22 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn sorted_array_to_bst(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-    // TODO: solve
-    println!("{nums:?}");
-    Some(Rc::new(RefCell::new(TreeNode::new(0))))
+    fn dfs(nums: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
+        if nums.is_empty() {
+            return None;
+        }
+        let root_index = nums.len() / 2;
+        let root_value = nums[root_index];
+        let root = Rc::new(RefCell::new(TreeNode::new(root_value)));
+        let rr = root.clone();
+        let mut rrc = rr.borrow_mut();
+        if root_index > 0 {
+            rrc.left = dfs(&nums[..root_index]);
+        }
+        if root_index + 1 < nums.len() {
+            rrc.right = dfs(&nums[root_index + 1..]);
+        }
+        Some(root)
+    }
+    dfs(&nums)
 }
