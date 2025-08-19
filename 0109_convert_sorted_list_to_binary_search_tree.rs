@@ -96,7 +96,35 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn sorted_list_to_bst(head: Option<Box<ListNode>>) -> Option<Rc<RefCell<TreeNode>>> {
-    // TODO: solve
-    println!("{head:?}");
-    Some(Rc::new(RefCell::new(TreeNode::new(0))))
+    let list_size = list_len(&head);
+    let mut head = head;
+    if let Some(ref mut n) = split_list(&mut head, 0, list_size / 2) {
+        let root = Rc::new(RefCell::new(TreeNode::new(n.val)));
+        let rr = root.clone();
+        let mut rrc = rr.borrow_mut();
+        rrc.left = sorted_list_to_bst(head);
+        rrc.right = sorted_list_to_bst(n.next.take());
+        return Some(root.clone());
+    }
+    None
+}
+
+fn list_len(head: &Option<Box<ListNode>>) -> usize {
+    if let Some(node) = head {
+        return 1 + list_len(&node.next);
+    }
+    0
+}
+
+fn split_list(head: &mut Option<Box<ListNode>>, i: usize, pos: usize) -> Option<Box<ListNode>> {
+    if let Some(node) = head {
+        if i == 0 && pos == 0 {
+            return head.take();
+        }
+        if i == pos.checked_sub(1).map_or(0, |v| v) {
+            return node.next.take();
+        }
+        return split_list(&mut node.next, i + 1, pos);
+    }
+    None
 }
