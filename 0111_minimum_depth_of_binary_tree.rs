@@ -75,7 +75,14 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    // TODO: solve
-    println!("{root:?}");
-    0
+    if let Some(rr) = root {
+        let rrc = rr.borrow();
+        1 + match (min_depth(rrc.left.clone()), min_depth(rrc.right.clone())) {
+            (0, 0) => 0,
+            (0, n) | (n, 0) => n,
+            (n, m) => n.min(m),
+        }
+    } else {
+        0
+    }
 }
