@@ -442,3 +442,7 @@ path = "0109_convert_sorted_list_to_binary_search_tree.rs"
 [[bin]]
 name = "110"
 path = "0110_balanced_bianry_tree.rs"
+
+[[bin]]
+name = "111"
+path = "0111_minimum_depth_of_binary_tree.rs"
