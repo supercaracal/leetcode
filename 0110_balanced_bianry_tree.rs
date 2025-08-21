@@ -75,7 +75,16 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-    // TODO: solve
-    println!("{root:?}");
-    false
+    fn dfs(root: &Option<Rc<RefCell<TreeNode>>>) -> (usize, bool) {
+        if let Some(rr) = root {
+            let rr = rr.clone();
+            let rrc = rr.borrow();
+            let (l, lb) = dfs(&rrc.left);
+            let (r, rb) = dfs(&rrc.right);
+            return (1 + l.max(r), lb && rb && l.abs_diff(r) <= 1);
+        }
+        (0, true)
+    }
+    let (_, b) = dfs(&root);
+    b
 }
