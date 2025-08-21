@@ -446,3 +446,7 @@ path = "0110_balanced_bianry_tree.rs"
 [[bin]]
 name = "111"
 path = "0111_minimum_depth_of_binary_tree.rs"
+
+[[bin]]
+name = "112"
+path = "0112_path_sum.rs"
