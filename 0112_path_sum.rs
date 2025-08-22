@@ -76,7 +76,13 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn has_path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
-    // TODO: solve
-    println!("{root:?}, {target_sum}");
+    if let Some(rr) = root {
+        let rrc = rr.borrow();
+        let s = target_sum - rrc.val;
+        if rrc.left.is_none() && rrc.right.is_none() {
+            return s == 0;
+        }
+        return has_path_sum(rrc.left.clone(), s) || has_path_sum(rrc.right.clone(), s);
+    }
     false
 }
