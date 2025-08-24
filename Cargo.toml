@@ -454,3 +454,7 @@ path = "0112_path_sum.rs"
 [[bin]]
 name = "113"
 path = "0113_path_sum_ii.rs"
+
+[[bin]]
+name = "114"
+path = "0114_flatten_binary_tree_to_linked_list.rs"
