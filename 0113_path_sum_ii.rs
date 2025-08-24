@@ -76,7 +76,27 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> Vec<Vec<i32>> {
-    // TODO: solve
-    println!("{root:?}, {target_sum}");
-    vec![]
+    fn dfs(
+        root: &Option<Rc<RefCell<TreeNode>>>,
+        target_sum: i32,
+        path: &mut Vec<i32>,
+        paths: &mut Vec<Vec<i32>>,
+    ) {
+        if let Some(rr) = root {
+            let rrc = rr.borrow();
+            path.push(rrc.val);
+            let sum = target_sum - rrc.val;
+            if sum == 0 && rrc.left.is_none() && rrc.right.is_none() {
+                paths.push(path.clone());
+            } else {
+                dfs(&rrc.left, sum, path, paths);
+                dfs(&rrc.right, sum, path, paths);
+            }
+            path.pop();
+        }
+    }
+    let mut path = Vec::new();
+    let mut paths = Vec::new();
+    dfs(&root, target_sum, &mut path, &mut paths);
+    paths
 }
