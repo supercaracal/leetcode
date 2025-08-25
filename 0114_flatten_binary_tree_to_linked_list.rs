@@ -76,6 +76,31 @@ fn main() -> Result<(), &'static str> {
 }
 
 fn flatten(root: &mut Option<Rc<RefCell<TreeNode>>>) {
-    // TODO: solve
-    println!("{root:?}");
+    fn concat(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        leaf: Option<Rc<RefCell<TreeNode>>>,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        if let Some(rr) = root {
+            let mut rrc = rr.borrow_mut();
+            rrc.right = concat(rrc.right.take(), leaf);
+            Some(rr.clone())
+        } else {
+            leaf
+        }
+    }
+    fn dfs(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
+        if let Some(rr) = root {
+            let mut rrc = rr.borrow_mut();
+            match (dfs(rrc.left.take()), dfs(rrc.right.take())) {
+                (Some(lr), Some(rr)) => rrc.right = concat(Some(lr.clone()), Some(rr.clone())),
+                (Some(cr), None) | (None, Some(cr)) => rrc.right = Some(cr.clone()),
+                (None, None) => {}
+            }
+            return Some(rr.clone());
+        }
+        None
+    }
+    if let Some(rr) = root {
+        dfs(Some(rr.clone()));
+    }
 }
