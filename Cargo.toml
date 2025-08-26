@@ -466,3 +466,7 @@ path = "0115_distinct_subsequences.rs"
 [[bin]]
 name = "116"
 path = "0116_populating_next_right_pointers_in_each_node.rs"
+
+[[bin]]
+name = "117"
+path = "0117_populating_next_right_pointers_in_each_node_ii.rs"
