@@ -22,23 +22,18 @@ fn num_distinct(s: String, t: String) -> i32 {
         if si == s.len() {
             return 0;
         }
+        if let Some(v) = cache.get(&(si, ti)) {
+            return *v;
+        }
         let mut count = 0;
         if s[si] == t[ti] {
-            count += if let Some(v) = cache.get(&(si + 1, ti + 1)) {
-                *v
-            } else {
-                let v = backtrack(s, t, si + 1, ti + 1, cache);
-                cache.insert((si + 1, ti + 1), v);
-                v
-            };
+            let v = backtrack(s, t, si + 1, ti + 1, cache);
+            cache.insert((si + 1, ti + 1), v);
+            count += v;
         }
-        count += if let Some(v) = cache.get(&(si + 1, ti)) {
-            *v
-        } else {
-            let v = backtrack(s, t, si + 1, ti, cache);
-            cache.insert((si + 1, ti), v);
-            v
-        };
+        let v = backtrack(s, t, si + 1, ti, cache);
+        cache.insert((si + 1, ti), v);
+        count += v;
         count
     }
     if s.is_empty() || t.is_empty() {
