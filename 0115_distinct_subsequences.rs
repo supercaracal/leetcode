@@ -27,13 +27,10 @@ fn num_distinct(s: String, t: String) -> i32 {
         }
         let mut count = 0;
         if s[si] == t[ti] {
-            let v = backtrack(s, t, si + 1, ti + 1, cache);
-            cache.insert((si + 1, ti + 1), v);
-            count += v;
+            count += backtrack(s, t, si + 1, ti + 1, cache);
         }
-        let v = backtrack(s, t, si + 1, ti, cache);
-        cache.insert((si + 1, ti), v);
-        count += v;
+        count += backtrack(s, t, si + 1, ti, cache);
+        cache.insert((si, ti), count);
         count
     }
     if s.is_empty() || t.is_empty() {
