@@ -462,3 +462,7 @@ path = "0114_flatten_binary_tree_to_linked_list.rs"
 [[bin]]
 name = "115"
 path = "0115_distinct_subsequences.rs"
+
+[[bin]]
+name = "116"
+path = "0116_populating_next_right_pointers_in_each_node.rs"
