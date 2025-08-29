@@ -8,6 +8,7 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+#[allow(clippy::needless_range_loop)]
 fn get_row(row_index: i32) -> Vec<i32> {
     if row_index < 0 {
         return Vec::with_capacity(0);
@@ -22,7 +23,7 @@ fn get_row(row_index: i32) -> Vec<i32> {
                 continue;
             }
             let tmp = row[j];
-            row[j] = prev + row[j];
+            row[j] += prev;
             prev = tmp;
         }
     }
