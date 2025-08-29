@@ -478,3 +478,7 @@ path = "0118_pascals_triangle.rs"
 [[bin]]
 name = "119"
 path = "0119_pascals_triangle_ii.rs"
+
+[[bin]]
+name = "120"
+path = "0120_triangle.rs"
