@@ -486,3 +486,7 @@ path = "0120_triangle.rs"
 [[bin]]
 name = "121"
 path = "0121_best_time_to_bu_and_sell_stock.rs"
+
+[[bin]]
+name = "122"
+path = "0122_best_time_to_bu_and_sell_stock_ii.rs"
