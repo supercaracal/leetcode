@@ -494,3 +494,7 @@ path = "0122_best_time_to_bu_and_sell_stock_ii.rs"
 [[bin]]
 name = "123"
 path = "0123_best_time_to_bu_and_sell_stock_iii.rs"
+
+[[bin]]
+name = "124"
+path = "0124_binary_tree_maximum_path_sum.rs"
