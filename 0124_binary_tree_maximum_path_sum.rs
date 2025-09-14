@@ -51,6 +51,7 @@ fn build_tree(nums: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
         .collect::<Vec<_>>();
     let mut offset = 1;
     for i in 0..nodes.len() {
+        // TODO: fix
         if let Some(node) = nodes[i].clone() {
             if i + offset < nodes.len() {
                 node.borrow_mut().left = nodes[i + offset].clone();
@@ -74,8 +75,28 @@ fn main() -> Result<(), &'static str> {
     Ok(())
 }
 
+// 1,2,null,3,null,4,null,5
+//                 1
+//           2           _
+//       3       _
+//    4     _
+//  5
 fn max_path_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    // TODO: solve
-    println!("{root:?}");
-    0
+    // TODO: fix
+    fn helper(root: Option<Rc<RefCell<TreeNode>>>) -> (i32, i32) {
+        if let Some(rr) = root {
+            let rrc = rr.borrow();
+            let (lv, lm) = helper(rrc.left.clone());
+            let (rv, rm) = helper(rrc.right.clone());
+            let max = (lv + rrc.val + rv)
+                .max(lv + rrc.val)
+                .max(rrc.val + rv)
+                .max(rrc.val)
+                .max(lm)
+                .max(rm);
+            return (rrc.val, max);
+        }
+        (0, i32::MIN)
+    }
+    helper(root).1
 }
