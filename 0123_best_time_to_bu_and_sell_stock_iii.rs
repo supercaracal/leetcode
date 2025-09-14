@@ -18,14 +18,15 @@ fn main() -> Result<(), &'static str> {
 // 6,1,3,2,4,7
 // 1,2,4,7
 // 8,3,6,2,8,8,8,4,2,0,7,2,9,4,9
+// 14,9,10,12,4,8,1,16
 fn max_profit(prices: Vec<i32>) -> i32 {
     // TODO: fix
     if prices.len() == 2 {
-        if prices[0] < prices[1] {
-            return prices[1] - prices[0];
+        return if prices[0] < prices[1] {
+            prices[1] - prices[0]
         } else {
-            return 0;
-        }
+            0
+        };
     }
     let mut l = 0;
     let mut r = prices.len() - 1;
@@ -42,17 +43,18 @@ fn max_profit(prices: Vec<i32>) -> i32 {
             "l={}, r={}, l_max={}, r_max={}",
             prices[l], prices[r], l_max_profit, r_max_profit
         );
-        if l + 1 < prices.len() && &prices[l] < &prices[l + 1] {
+        if l + 1 == prices.len() || r == 0 {
+            break;
+        } else if l_bought < &prices[r] && l_max_profit < &prices[r] - l_bought {
             l += 1;
-        } else if r > 0 && &prices[r - 1] < &prices[r] {
+        } else if r_sold > &prices[l] && r_max_profit < r_sold - &prices[l] {
             r -= 1;
-        } else if l + 1 == prices.len() {
-            break;
-        } else if r == 0 {
-            break;
-        } else if l_max_profit < r_max_profit {
+        } else if &prices[l] < &prices[l + 1] || l_max_profit < r_max_profit {
             l += 1;
+        } else if &prices[r - 1] < &prices[r] || l_max_profit > r_max_profit {
+            r -= 1;
         } else {
+            l += 1;
             r -= 1;
         }
     }
