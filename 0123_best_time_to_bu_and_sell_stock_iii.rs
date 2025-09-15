@@ -37,21 +37,21 @@ fn max_profit(prices: Vec<i32>) -> i32 {
     while l <= r {
         l_bought = l_bought.min(&prices[l]);
         r_sold = r_sold.max(&prices[r]);
-        l_max_profit = l_max_profit.max(&prices[l] - l_bought);
-        r_max_profit = r_max_profit.max(r_sold - &prices[r]);
+        l_max_profit = l_max_profit.max(prices[l] - l_bought);
+        r_max_profit = r_max_profit.max(r_sold - prices[r]);
         println!(
             "l={}, r={}, l_max={}, r_max={}",
             prices[l], prices[r], l_max_profit, r_max_profit
         );
         if l + 1 == prices.len() || r == 0 {
             break;
-        } else if l_bought < &prices[r] && l_max_profit < &prices[r] - l_bought {
+        } else if l_bought < &prices[r] && l_max_profit < prices[r] - l_bought {
             l += 1;
-        } else if r_sold > &prices[l] && r_max_profit < r_sold - &prices[l] {
+        } else if r_sold > &prices[l] && r_max_profit < r_sold - prices[l] {
             r -= 1;
-        } else if &prices[l] < &prices[l + 1] || l_max_profit < r_max_profit {
+        } else if prices[l] < prices[l + 1] || l_max_profit < r_max_profit {
             l += 1;
-        } else if &prices[r - 1] < &prices[r] || l_max_profit > r_max_profit {
+        } else if prices[r - 1] < prices[r] || l_max_profit > r_max_profit {
             r -= 1;
         } else {
             l += 1;
