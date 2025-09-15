@@ -502,3 +502,7 @@ path = "0124_binary_tree_maximum_path_sum.rs"
 [[bin]]
 name = "125"
 path = "0125_valid_palindrome.rs"
+
+[[bin]]
+name = "126"
+path = "0126_word_ladder_ii.rs"
